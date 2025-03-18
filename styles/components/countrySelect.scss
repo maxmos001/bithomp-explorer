@@ -1,0 +1,5 @@
+@use "select.scss";
+
+.country-select {
+  @include select.react-select;
+}

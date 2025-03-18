@@ -1,0 +1,653 @@
+{
+  "menu": {
+    "amm": {
+      "amm": "AMM",
+      "pools": "AMM pools",
+      "explorer": "AMM explorer"
+    },
+    "company": {
+      "about-us": "Tentang"
+    },
+    "services": {
+      "services": "Layanan",
+      "nft-mint": "Mint NFT",
+      "tax-reports": "Tax reports"
+    },
+    "business": {
+      "advertise": "Iklankan",
+      "eaas": "Explorer sebagai Layanan",
+      "build-unl": "Bangun UNL"
+    },
+    "usernames": "Pendaftaran Username",
+    "project-registration": "Pendaftaran Proyek",
+    "price-alerts": "Peringatan Harga {{nativeCurrency}}",
+    "submit-offline-tx": "Kirim Transaksi Offline",
+    "ledger": "Transaksi Ledger",
+    "nft": {
+      "explorer": "Penjelajah",
+      "volumes": "Volume",
+      "sales": "Penjualan",
+      "minters": "Pembuat NFT",
+      "distribution": "Distribusi (pemilik)",
+      "statistics": "Statistik Langsung",
+      "nfts": "NFT Akun",
+      "offers": "Penawaran Akun",
+      "marketplaces": "Pasar",
+      "collections": "Koleksi"
+    },
+    "network": {
+      "blockchain": "Blockchain",
+      "nodes": "Node",
+      "governance": "Governance",
+      "activations": "Akun yang Telah Aktif (grafik)",
+      "distribution": "Distribusi {{nativeCurrency}}",
+      "last-ledger-information": "Informasi Ledger Terbaru",
+      "last-ledger-transactions": "Transaksi Ledger Terbaru",
+      "verified-domains": "Domain yang Terverifikasi",
+      "validators": "Validasi",
+      "amendments": "Perubahan",
+      "unl-report": "Laporan UNL",
+      "genesis": "Akun Awal"
+    },
+    "developers": {
+      "developers": "Pengembang",
+      "account-generation": "Generasi Akun",
+      "faucet": "Faucet",
+      "api": "Dokumentasi API",
+      "api-admin": "Akun API"
+    },
+    "legal": "Hukum",
+    "disclaimer": "Penyangkalan",
+    "privacy-policy": "Kebijakan Privasi",
+    "terms-and-conditions": "Syarat dan Ketentuan",
+    "customer-support": "Dukungan Pelanggan",
+    "press": "Pers",
+    "merch": "Toko Merchandise",
+    "donate": "Donasi",
+    "sponsored": {
+      "title": "Disponsori",
+      "buy": "Beli XRP",
+      "earn": "Dapatkan dari XRP",
+      "play": "Mainkan XRP"
+    },
+    "learn-more": {
+      "title": "Pelajari lebih lanjut"
+    }
+  },
+  "components": {
+    "expiration-select": {
+      "1d": "1 hari",
+      "3d": "3 hari",
+      "7d": "7 hari",
+      "14d": "14 hari",
+      "30d": "30 hari",
+      "90d": "90 hari"
+    },
+    "target-table-select": {
+      "01": "L1 - Main table",
+      "02": "L2 - My table"
+    }
+  },
+  "signin": {
+    "connect": "Hubungkan",
+    "signin": "Masuk",
+    "signout": "Keluar",
+    "choose-app": "Pilih aplikasi masuk",
+    "login-with": "Masuk dengan {{appName}}",
+    "sign-with": "Tanda tangan dengan {{appName}}",
+    "amount": {
+      "set-price": "Tetapkan harga",
+      "enter-amount": "Masukkan jumlah"
+    },
+    "expiration": "Kedaluwarsa",
+    "target-table": "Target table",
+    "statuses": {
+      "check-app": "Ikuti petunjuk di aplikasi {{appName}}."
+    },
+    "xaman": {
+      "open-app": "Buka aplikasi Xaman di ponsel Anda.",
+      "change-settings": "Buka pengaturan dan pilih node testnet.",
+      "scan-qr": "Pindai kode QR ini dengan aplikasi Xaman.",
+      "statuses": {
+        "redirecting": "Mengalihkan ke Xaman...",
+        "wait": "Harap tunggu...",
+        "check-push": "Periksa pemberitahuan push di ponsel Anda.",
+        "expired": "Kode QR telah kedaluwarsa, minta yang baru."
+      }
+    },
+    "actions": {
+      "view": "Halaman akun saya",
+      "my-transactions": "Transaksi saya",
+      "send": "Kirim XRP",
+      "my-nfts": "NFT Saya",
+      "my-nft-offers": "Penawaran NFT Saya"
+    },
+    "confirm": {
+      "set-did": "Setting a DID",
+      "set-domain": "Mengatur Domain",
+      "set-avatar": "Mengatur Avatar",
+      "nft-create-transfer-offer-header": "Kirim NFT",
+      "nft-transfer": "Saya menawarkan NFT ini GRATIS kepada akun Tujuan, <2>akun tujuan perlu menerima transfer NFT</2>.",
+      "nft-accept-sell-offer-header": "Pembelian NFT",
+      "nft-accept-buy-offer-header": "Selling NFT",
+      "nft-create-sell-offer-header": "Daftar Jual",
+      "nft-create-buy-offer-header": "Buat Penawaran Beli",
+      "nft-accept-offer": "Saya mengakui bahwa {{webSiteName}} memberi saya akses ke pasar terdesentralisasi, dan tidak dapat memverifikasi atau menjamin keaslian dan legalitas NFT apa pun. Saya mengkonfirmasi bahwa saya telah membaca <4>Syarat dan Ketentuan</4>, dan saya setuju dengan semua syarat untuk membeli, menjual, atau menggunakan NFT apa pun di {{webSiteName}}.",
+      "nft-create-sell-offer": "Saya mengerti, begitu daftar saya ditandatangani, NFT dapat dibeli secara instan.",
+      "nft-burn-header": "Penghapusan NFT",
+      "nft-burn": "Saya mengerti bahwa NFT akan dihapus secara permanen, artinya, tidak dapat dimiliki, ditransfer, dibeli, atau dijual lagi. Tindakan ini tidak dapat dibatalkan."
+    },
+    "set-account": {
+      "domain": "Domain",
+      "enter-domain": "Masukkan domain"
+    },
+    "status": {
+      "awaiting-crawler": "Menunggu sistem pemantau untuk meng-update informasi",
+      "awaiting-broker": "Menunggu {{serviceName}} menerima penawaran",
+      "failed-broker": "Gagal memberitahu {{serviceName}} tentang penawaran. Anda dapat membatalkannya."
+    },
+    "nft-offer": {
+      "counteroffer": "Anda memberikan tawaran tambahan, seharusnya langsung diterima dalam 20 detik. Jika tidak, Anda bisa membatalkannya kapan saja.",
+      "nft-price": "Harga NFT",
+      "fee": "Biaya {{serviceName}} ({{feeText}})",
+      "total": "Total"
+    }
+  },
+  "footer": {
+    "cookie": {
+      "we-use-cookie": "Kami menggunakan cookie dan teknologi serupa untuk meningkatkan pengalaman Anda di situs kami."
+    }
+  },
+  "home": {
+    "title": "Pencarian {{explorerName}} | Telusuri {{nativeCurrency}} Ledger",
+    "description": "Grafik harga {{nativeCurrency}} | Statistik {{explorerName}} | Penjelajah NFT | Pencarian alamat dompet | Volume NFT {{explorerName}} | Beli dan Jual NFT | Layanan {{explorerName}}",
+    "search-placeholder": "Cari berdasarkan Alamat / Transaksi / NFT / Username / PayString / Penawaran",
+    "search-placeholder-short": "Cari berdasarkan Alamat / Transaksi",
+    "scan-qr": "PINDAI KODE",
+    "whales": {
+      "header": "Transaksi paling signifikan dalam 24 jam terakhir"
+    },
+    "stat": {
+      "header": "Statistik live {{ledgerName}}",
+      "ledger-index": "Indeks ledger",
+      "close-time": "Waktu penutupan",
+      "transactions": "Transaksi",
+      "txs-per-sec": "txs/s",
+      "quorum": "Quorum validasi",
+      "proposers": "Pengusul",
+      "accounts": "Akun",
+      "accountsActiveLast24h": "Akun aktiv (24h)",
+      "transactionsLast24h": "Transaksi (24h)",
+      "paymentsLast24h": "Pembayaran (24h)",
+      "feesLast24h": "Biaya (24h)",
+      "usernames": "Nama Pengguna",
+      "nft": {
+        "created": "NFT dicetak",
+        "burned": "NFT dihapus",
+        "owners": "Pemilik saat ini",
+        "issuers": "Penerbit NFT",
+        "transfers": "Transfer NFT",
+        "for-sale": "NFT yang Dijual"
+      },
+      "escrows": "Escrows",
+      "amms": "AMM pools",
+      "nodes": "Node"
+    }
+  },
+  "last-ledger-information": {
+    "ledger-hash": "Hash Ledger",
+    "ledger": "Ledger",
+    "ledger-closed-at": "Ledger ditutup pada",
+    "ledger-interval": "Interval Ledger",
+    "transactions": "Transaksi",
+    "transaction-speed": "Transaksi per detik",
+    "proposers": "Pengusul",
+    "validation-quorum": "Kuorum Validasi",
+    "base-fee": "Biaya Dasar",
+    "base-reserve": "Cadangan Dasar",
+    "increment-reserve": "Penambahan Cadangan",
+    "total-supply": "Total Pasokan",
+    "total-burned": "Total Dihapus"
+  },
+  "nft-statistics": {
+    "header": "Statistik NFT Langsung",
+    "text0": "Informasi ini agak ketinggalan zaman, kami perlu mengejar <1>{{lag}}</1> ledger.<br/>Data disediakan untuk ledger #{{crawlerIndex}}, ({{crawlerTime}}).<br/>Ledger terverifikasi terakhir adalah #{{currentLedgerIndex}}, ({{currentLedgerTime}}).",
+    "ledger-index": "Indeks Ledger",
+    "created": "Ditambahkan",
+    "burned": "Dihapus",
+    "exist": "Saat ini Ada",
+    "burnable": "Dapat Dihapus oleh Pencetak",
+    "only-xrp": "Hanya Dapat Dijual dengan XRP",
+    "transferable": "Dapat Ditransfer ke Siapa Saja",
+    "owners": "Pemilik Saat Ini",
+    "issuers": "Total Penerbit",
+    "transfers": "Transfer NFT",
+    "for-sale": "NFT yang Dijual",
+    "for-sale-without-destination": "NFT yang Dijual Publik",
+    "for-sale-with-destination": "NFT yang Dijual Langsung"
+  },
+  "alerts": {
+    "text0": "Dapatkan pemberitahuan saat harga pasar {{ nativeCurrency }}/USD atau {{ nativeCurrency }}/BTC oleh <6>{{linkText}}</6> berubah lebih dari 5% dalam satu jam atau lebih dari 10% dalam satu hari.",
+    "text1": "Ikuti saluran Telegram: <1>bithomp</1> atau akun X: <4>XRP_PriceAlerts</4>.",
+    "last-alerts": "50 Pemberitahuan Terakhir",
+    "date-and-time": "Tanggal & waktu",
+    "currency-pair": "Pasangan Mata Uang",
+    "change-duration": "Durasi Perubahan",
+    "change": "Perubahan",
+    "old-rate": "Harga Lama",
+    "new-rate": "Harga Baru"
+  },
+  "genesis": {
+    "text0": "Ledger <1>32570</1> adalah ledger terawal yang tersedia, kira-kira dalam minggu pertama sejarah XRPL, <3>ledger 1 hingga 32569 hilang akibat kecelakaan pada tahun 2012</3>.",
+    "ledger-continue": "Karena status XRP Ledger dicatat dalam setiap versi ledger, ledger dapat terus berlanjut tanpa sejarah yang hilang.",
+    "ledger-index": "Indeks Ledger",
+    "account-count": "Jumlah Akun",
+    "inception": "Awal",
+    "balance-update": "Pembaruan Saldo",
+    "details": "Detail",
+    "address": "Alamat",
+    "genesis-balance": "Saldo Genesis",
+    "rippletrade-username": "Username Rippletrade",
+    "nickname": "Nama Panggilan",
+    "genesis-index": "Indeks Genesis"
+  },
+  "developer": {
+    "header": "Permintaan Kunci API Bithomp",
+    "email": "Alamat surel Anda:",
+    "url": "URL situs/aplikasi Anda:",
+    "description": "Deskripsi Proyek dan Detail Penggunaan API:",
+    "success": "Thank you. The API token was sent to your e-mail.",
+    "error": {
+      "url-empty": "Silakan masukkan URL situs/aplikasi Anda.",
+      "url-invalid": "Silakan masukkan URL yang valid.",
+      "description-empty": "Silakan tambahkan deskripsi proyek Anda.",
+      "description-invalid": "Silakan tulis deskripsi yang terperinci tentang proyek Anda."
+    }
+  },
+  "press": "Ini adalah logo resmi Bithomp yang digunakan oleh profesional media dan pers untuk cetak dan web (svg, png, eps, pdf, untuk latar belakang gelap dan terang). Untuk pertanyaan media, silakan <2>hubungi kami</2>.",
+  "page-not-found": {
+    "header": "Halaman yang diminta tidak ditemukan.",
+    "text": "Klik <2>di sini</2> untuk memeriksa halaman utama kami."
+  },
+  "receipt": {
+    "quantity": "qty.",
+    "items": "item",
+    "price": "harga",
+    "total": "total",
+    "paid": "dibayar",
+    "order-id": "ID pesanan"
+  },
+  "button": {
+    "set-domain": "Tetapkan sebuah domain",
+    "continue": "Lanjut",
+    "cancel": "Batal",
+    "accept": "Terima",
+    "submit": "Kirim",
+    "search": "Cari",
+    "print": "Cetak",
+    "download": "Unduh",
+    "copy": "Salin",
+    "copied": "Tersalin",
+    "copy-my-address": "Salin alamat saya",
+    "sign": "Tanda tangan",
+    "nft": {
+      "add-another-sell-offer": "Tambahkan penawaran penjualan lainnya",
+      "transfer": "Transfer NFT",
+      "update-sell-offer": "Update penawaran penjualan",
+      "cancel-sell-offer-for": "Batalkan Penawaran Jual untuk {{amount}}",
+      "cancel-buy-offer-for": "Batalkan Penawaran Beli untuk {{amount}}",
+      "cancel-transfer": "Batalkan Transfer NFT",
+      "accept-transfer": "Terima Transfer NFT",
+      "buy-for-amount-on": "Beli seharga {{amount}} di {{service}}",
+      "buy-for-amount": "Beli seharga {{amount}}",
+      "sell-for-amount": "Sell for {{amount}}",
+      "make-offer": "Buat Penawaran",
+      "list-for-sale": "Daftar untuk dijual",
+      "burn": "Hapus NFT ini"
+    }
+  },
+  "general": {
+    "error": "Kesalahan",
+    "no-data": "Tidak ada data tersedia",
+    "loading": "Memuat...",
+    "login-to-bithomp-pro": "Memuat lebih banyak data tersedia untuk pelanggan Bithomp Pro yang <1>termasuk login</1>.",
+    "renew-bithomp-pro": "Langganan Bithomp Pro Anda telah kedaluwarsa. <1>Perbarui langganan Anda</1>.",
+    "load-failed": "Gagal memuat",
+    "all-issuers": "Semua penerbit",
+    "no-expiration": "Tidak pernah",
+    "no-uri": "Tidak ada URI yang ditentukan",
+    "no-media": "Tidak ada media ditemukan",
+    "viewer": "Pelihat",
+    "developer-mode": "Mode Pengembang",
+    "search": "Search",
+    "of-many": "dari banyak",
+    "of": "dari",
+    "sort-by": "Urutkan berdasarkan"
+  },
+  "form": {
+    "error": {
+      "destination-tag-invalid": "Tag tujuan tidak valid.",
+      "price-empty": "Mohon masukkan jumlah.",
+      "address-empty": "Mohon masukkan alamat.",
+      "address-invalid": "Mohon masukkan alamat yang valid.",
+      "domain-empty": "Mohon masukkan domain web.",
+      "domain-invalid": "Mohon masukkan domain web yang valid.",
+      "description-empty": "Mohon masukkan deskripsi.",
+      "description-short": "Deskripsi terlalu pendek.",
+      "email-empty": "Silakan masukkan alamat email Anda.",
+      "email-invalid": "Silakan masukkan alamat email yang valid.",
+      "password-empty": "Silakan masukkan kata sandi Anda.",
+      "password-invalid": "Silakan masukkan kata sandi yang valid."
+    },
+    "placeholder": {
+      "destination-tag": "Masukkan tag tujuan (jika diperlukan)",
+      "uri": "Masukkan URI"
+    }
+  },
+  "error": {
+    "payment-partly": "Silahkan kirim sisa jumlahnya, sejauh ini kami hanya menerima {{received}} {{currency}} saat <b>{{required}} {{currency}}</b> dibutuhkan.",
+    "Network Error": "Sepertinya tidak ada koneksi internet ;(",
+    "Request failed with status code 429": "Anda mengirimkan terlalu banyak permintaan kepada kami, coba lagi nanti!",
+    "Request failed with status code 404": "Panggilan API seperti itu tidak diizinkan di jaringan tersebut.",
+    "Request failed with status code 403": "Sepertinya Anda telah keluar, silakan masuk kembali.",
+    "Request aborted": "Permintaan dibatalkan"
+  },
+  "errors": {
+    "token": {
+      "required": "Silakan masuk untuk melanjutkan."
+    },
+    "partner": {
+      "not_found": "Tidak ada proyek."
+    },
+    "access_token": {
+      "not_found": "Tidak ada kunci API."
+    },
+    "address": {
+      "invalid_signature_address": "Alamat tanda tangan tidak valid. Pastikan Anda menandatangani dengan alamat yang benar.",
+      "limit_reached": "Anda tidak dapat menambahkan lebih banyak alamat, Anda telah mencapai batasnya.",
+      "not_activated": "Alamat ini belum diaktifkan di ledger."
+    },
+    "blob": {
+      "invalid_signature_address": "Anda perlu menandatangani pesan dengan alamat yang ingin Anda tambahkan."
+    }
+  },
+  "error-api": {
+    "search is too short": "Nama yang akan dicari terlalu pendek",
+    "issuer username is not found or invalid": "Username penerbit tidak valid atau tidak ditemukan",
+    "issuer is invalid": "Alamat penerbit tidak valid",
+    "owner username is not found or invalid": "Username pemilik tidak valid atau tidak ditemukan",
+    "owner is invalid": "Alamat pemilik tidak valid",
+    "destination username is not found or invalid": "Username tujuan tidak valid atau tidak ditemukan",
+    "destination is invalid": "Alamat tujuan tidak valid",
+    "currency is invalid": "Mata uang tidak valid",
+    "currencyIssuer username is not found or invalid": "Username penerbit mata uang tidak valid atau tidak ditemukan",
+    "currencyIssuer is invalid": "Alamat penerbit mata uang tidak valid",
+    "Token information is not found": "Kami tidak dapat menemukan informasi apa pun untuk ID tersebut",
+    "No nfts information is found": "Maaf, terjadi kesalahan, silakan cari yang lain.",
+    "Address is not valid": "Invalid address"
+  },
+  "error-tx": {
+    "terNO_ACCOUNT": "Alamat yang mengirimkan transaksi belum didanai di ledger (belum).",
+    "tefMAX_LEDGER": "Transaksi tidak dapat dimasukkan ke ledger tertutup ter"
+  },
+  "units": {
+    "seconds-short": "d",
+    "minutes-short": "m",
+    "hours-short": "j",
+    "days-short": "h"
+  },
+  "period": {
+    "all": "",
+    "year": "Selama 365 hari terakhir",
+    "month": "Selama 30 hari terakhir",
+    "week": "Selama 7 hari terakhir",
+    "day": "Selama 24 jam terakhir"
+  },
+  "table": {
+    "no-value": "tidak ada nilai",
+    "updated": "Diperbarui",
+    "currency": "Mata Uang",
+    "currency-issuer": "Penerbit Mata Uang",
+    "destination-tag": "Destination tag",
+    "uri": "URI",
+    "mints": "Mints",
+    "view": "View",
+    "period": "Periode",
+    "mint-period": "Periode Mint",
+    "burn-period": "Periode Burn",
+    "warning": "Warning",
+    "sequence": "Urutan",
+    "version": "Versi",
+    "domain": "Domain",
+    "index": "Indeks",
+    "address": "Alamat",
+    "date": "Tanggal",
+    "time": "Waktu",
+    "amount": "Jumlah",
+    "name": "Nama",
+    "sender": "Pengirim",
+    "balance": "Saldo",
+    "memo": "Memo",
+    "transaction": "Transaksi",
+    "owner": "Pemilik",
+    "owners-now": "Pemilik (saat ini)",
+    "accepted-by": "Diterima oleh",
+    "issuer": "Penerbit",
+    "minter": "Minter",
+    "receiver": "Penerima",
+    "issuer-owner": "Penerbit & Pemilik",
+    "issuers": "Penerbit",
+    "broker": "Broker",
+    "seller": "Penjual",
+    "buyer": "Pembeli",
+    "sold": "Terjual",
+    "sold_few": "Terjual",
+    "sold-on": "Terjual pada",
+    "minted-on": "Dicetak pada",
+    "type": "Tipe",
+    "status": "Status",
+    "hash": "Hash",
+    "serial": "Serial",
+    "taxon": "Takson",
+    "placed": "Ditempatkan",
+    "accepted": "Diterima",
+    "canceled": "Dibatalkan",
+    "offer": "Penawaran",
+    "expiration": "Kedaluwarsa",
+    "expired": "Kedaluwarsa",
+    "destination": "Tujuan",
+    "sales": "Penjualan",
+    "volume": "Volume Penjualan",
+    "price": "Harga",
+    "external-url": "URL Eksternal",
+    "description": "Deskripsi",
+    "collection": "Koleksi",
+    "collection-family": "Koleksi Keluarga",
+    "transfer-fee": "Royalti",
+    "flag": "Bendera",
+    "flags": "Bendera",
+    "count": "Jumlah",
+    "nfts": "NFT",
+    "minted": "Dicetak",
+    "transferred": "Ditransfer",
+    "burned": "Dihapus",
+    "attributes": "Atribut",
+    "metadata": "Metadata",
+    "ledger-data": "Data Ledger",
+    "history": "Sejarah",
+    "sell-offers": "Penawaran Jual",
+    "buy-offers": "Penawaran Beli",
+    "nfts-now": "NFT (saat ini)",
+    "traded-nfts": "NFT yang Diperdagangkan",
+    "buyers": "Pembeli",
+    "raw-data": "Data Mentah",
+    "username": "Username",
+    "floor-now": "Harga Terendah (saat ini)",
+    "related-lists": "Daftar Terkait",
+    "by-issuer": "Menurut Penerbit",
+    "by-owner": "Menurut Pemilik",
+    "by-taxon": "Menurut Taksonomi",
+    "all-nfts": "Semua NFT",
+    "on-sale": "Sedang Dijual",
+    "social-share": "Berbagi adalah Peduli",
+    "marketplace": "Pasar",
+    "public-key": "Kunci Publik",
+    "text": {
+      "private-offer": "Private offer",
+      "show-extended-statistics": "Tampilkan statistik tambahan",
+      "include-without-media-data": "Sertakan NFT tanpa media",
+      "include-burned-nfts": "Sertakan NFT yang dihapus",
+      "no-expiration": "Tidak ada tanggal kedaluwarsa",
+      "no-offers": "Tidak ada penawaran ditemukan",
+      "unspecified": "tidak ditentukan",
+      "sell": "Jual",
+      "buy": "Beli",
+      "show": "tampilkan",
+      "hide": "sembunyikan",
+      "see-on": "Lihat di <2><0>{{marketplace}}</0></2>",
+      "valid": "valid",
+      "invalid": "tidak valid",
+      "no-votes": "Tidak ada suara."
+    },
+    "filter": {
+      "valid": "Valid",
+      "invalid": "Tidak Valid",
+      "active": "Semua yang Aktif",
+      "historical": "Historis",
+      "all": "Semua"
+    },
+    "text-status": {
+      "NFT is not owned by the seller account": "NFT tidak dimiliki oleh akun penjual",
+      "Offer is expired": "Kedaluwarsa",
+      "Unable to verify balance of the buyer account": "Tidak dapat memverifikasi saldo akun pembeli",
+      "Insufficient funds on the buyer account": "Pembeli tidak memiliki cukup dana",
+      "Seller has no trustline for the token or it cannot be verified": "Penjual tidak memiliki trustline untuk token atau tidak dapat diverifikasi",
+      "NFT Issuer has no trustline for the token to accept royalty or it cannot be verified": "Penerbit NFT tidak memiliki trustline untuk token untuk menerima royalti atau tidak dapat diverifikasi",
+      "NFT is already belongs to the buyer": "NFT sudah dimiliki oleh pembeli"
+    }
+  },
+  "tabs": {
+    "list": "Daftar",
+    "tiles": "Tile",
+    "secondary-sales": "Penjualan Sekunder",
+    "primary-sales": "Penjualan Primer",
+    "primaryAndSecondary-sales": "Semua Penjualan",
+    "all-time": "Sepanjang Waktu",
+    "year": "365 hari",
+    "month": "30 hari",
+    "week": "7 hari",
+    "day": "24 jam",
+    "hour": "1 jam",
+    "currencies": "Mata Uang",
+    "issuers": "Penerbit",
+    "marketplaces": "Pasar",
+    "brokers": "Broker",
+    "charts": "Grafik",
+    "collections": "Koleksi",
+    "image": "Gambar",
+    "video": "Video",
+    "audio": "Audio",
+    "model": "Model 3D",
+    "owned-offers": "Dimiliki",
+    "offers-for-owned-nfts": "Untuk NFT yang Dimiliki",
+    "privately-offered-to-address": "Privat (masuk)",
+    "all": "Semua",
+    "buy": "Beli",
+    "sell": "Jual",
+    "buyNow": "Buy now",
+    "publicAndKnownBrokers": "Publik & Broker Terkenal",
+    "onSale": "Dijual dengan {{nativeCurrency}}",
+    "all-tokens": "Semua Token",
+    "native-currency-only": "Hanya {{nativeCurrency}}",
+    "mintedNew": "Latest",
+    "mintedOld": "Oldest",
+    "existing": "Existing",
+    "burned": "Dihapus"
+  },
+  "xaman": {
+    "new-qr": "Dapatkan kode QR baru"
+  },
+  "explorer": {
+    "header": {
+      "main": "Penjelajah {{explorerName}}",
+      "amm": "AMM pool information",
+      "object": "Object information",
+      "account": "Account information",
+      "transaction": "Transaction information",
+      "nft": "NFT",
+      "nfts": "NFTs",
+      "nft-offer": "Penawaran NFT",
+      "nft-offers": "Penawaran NFT",
+      "nft-volumes": "NFT sales volumes"
+    },
+    "enter-address": "Masukkan alamat XRPL atau username",
+    "searching-tx-nft-nftoffer": "Mencari Tx / ID NFT / Tawaran NFT",
+    "searching-for-addresses": "Mencari alamat...",
+    "menu": {
+      "account": "Akun",
+      "transactions": "Transaksi",
+      "tokens": "Token"
+    },
+    "different-network": "Transaksi ini berasal dari jaringan <1>{{networkNameOrId}}</1>",
+    "check-tx-on-different-explorer": "periksa detailnya <2><0>di sini</0></2>.",
+    "not-supported-network": "yang tidak didukung.",
+    "no-slashes": "The search should not contain slashes."
+  },
+  "nft-explorer": {
+    "header": "Penjelajah NFT"
+  },
+  "nft-offers": {
+    "header": "Penawaran NFT",
+    "owned-desc": "Di sini Anda dapat mencari Penawaran Beli dan Jual untuk NFT, ketik alamat atau username untuk melihat apa yang ditawarkan.",
+    "for-owned-nfts-desc": "Di sini Anda dapat mencari Penawaran Beli untuk NFT yang dimiliki oleh akun, ketik alamat atau username untuk melihat penawaran yang diterima.",
+    "privately-offered-to-address-desc": "Di sini Anda dapat mencari Penawaran yang dibuat secara pribadi untuk sebuah akun (dengan tujuan), ini sering digunakan untuk transfer NFT (harga 0), ketik alamat atau username untuk melihat penawaran yang diterima.",
+    "no-nft-offers": "Kami tidak dapat menemukan Penawaran NFT apa pun.",
+    "cancel-invalid-offer_one": "Batal penawaran yang tidak valid",
+    "cancel-invalid-offer_other": "Batal {{count}} penawaran yang tidak valid",
+    "cancel-expired-offer_one": "Batal penawaran yang kedaluwarsa",
+    "cancel-expired-offer_other": "Batal {{count}} penawaran yang kedaluwarsa"
+  },
+  "nft-offer": {
+    "header": "Penawaran NFT",
+    "desc": "Di sini Anda dapat mencari Penawaran NFT, masukkan ID Penawaran NFT dan tekan tombol pencarian.",
+    "enter-offer-id": "Masukkan ID Penawaran NFT",
+    "selling": "Menjual",
+    "buying": "Membeli"
+  },
+  "nfts": {
+    "header": "NFT Akun",
+    "desc": "Di sini Anda dapat mencari NFT, ketik alamat untuk melihat NFT yang dimilikinya.",
+    "search-by-name": "Cari berdasarkan nama NFT",
+    "search-by-issuer": "Cari berdasarkan penerbit NFT",
+    "search-by-taxon": "Cari berdasarkan taksonomi NFT",
+    "search-by-owner": "Cari berdasarkan pemilik NFT",
+    "search-by-buyer": "Cari berdasarkan pembeli NFT",
+    "search-by-seller": "Cari berdasarkan penjual NFT",
+    "no-nfts": "Kami tidak dapat menemukan NFT dengan parameter pencarian Anda.",
+    "on-service": "di {{service}}",
+    "amount-on-service": "{{amount}} di {{service}}",
+    "load-more": "Kami sedang mencari data di XRPL... harap tunggu...",
+    "end": "Ini adalah semua NFT yang dapat kami temukan."
+  },
+  "nft-sales": {
+    "header": "Penjualan NFT",
+    "load-more": "Kami sedang mencari data di XRPL... harap tunggu...",
+    "end": "Akhir daftar."
+  },
+  "links": {
+    "active-offers-same-account": "Lihat penawaran aktif dari akun tersebut",
+    "nfts-same-issuer": "NFT dengan penerbit yang sama",
+    "owned-nfts-same-account": "NFT yang dimiliki oleh akun tersebut",
+    "all": "semua",
+    "sold": "terjual"
+  },
+  "donate": {
+    "help-us": "Bantu kami dalam misi kami untuk membuat penjelajah XRPL yang paling ramah pengguna.",
+    "it-helps": "Donasi Anda akan membantu kami menambah kapasitas dan terus mengembangkan Bithomp.",
+    "address": "Alamat XRPL kami untuk donasi",
+    "donate-with-xaman": "Donasi dengan Xaman"
+  },
+  "sponsored": {
+    "sponsored": "Disponsori"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "desc": "NFT IDを入力して、NFTを検索できます。",
+  "enter-nft-id": "NFT IDを入力",
+  "holders": "分布 (保有者)",
+  "nft-id-decoded-data": "NFT IDからの解析データ",
+  "nft-not-found-on-that-network": "このNFTは<1>{{network}}</1>では見つかりませんでした。",
+  "table": {
+    "digest": "ダイジェスト",
+    "attention": "注意",
+    "attention-texts": {
+      "no-uri": "URIが設定されていません。一般的に採用されている規格との互換性がありません。",
+      "no-metadata": "URIにメタデータが設定されていません。一般的に採用されている規格に反しています。",
+      "not-transferable": "このNFTは売買・譲渡不可に設定されています。発行者との間でのみ売買・譲渡が可能です。",
+      "burnable": "発行者(または発行者が承認した主体)はこのNFTをバーンすることができます。",
+      "no-digest": "Digestが設定されていません。NFTの整合性を検証できません。",
+      "invalid-digest": "NFTの整合性チェックに失敗しました。DigestがNFTのメタデータと一致しません。"
+    },
+    "warnings": {
+      "nft-crawler-delay": "一部のデータは古くなっています。最後の更新: {{lastUpdate}}。サーバーが追いついていますので、後で再度確認してください。"
+    }
+  }
+}

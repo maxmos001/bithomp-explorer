@@ -1,0 +1,19 @@
+{
+  "table": {
+    "validator": "Validator",
+    "server-country": "Serverland",
+    "server-location": "Serverstandort",
+    "cloud-private": "Cloud/Privat",
+    "network-asn": "Netzwerk ASN",
+    "owner-country": "Land Eigentümer",
+    "votes-for": "Stimmen für",
+    "last-seen": "Zuletzt gesehen",
+    "text": {
+      "domain-verified-toml": "Verifizierte Domain (TOML Datei)",
+      "unl": "In der Unique Node List (UNL)",
+      "negative-unl": "in der negativen UNL"
+    }
+  },
+  "domain-legacy": "Domain (alte Verifizierung)",
+  "text0": "Die Liste der Validatoren <1>{{url}}</1> hat die Sequenz {{sequence}} und läuft am {{expiration}} ab.<br/>Sie beinhaltet {{validatorCount}} nachfolgend aufgelistete Validatoren."
+}

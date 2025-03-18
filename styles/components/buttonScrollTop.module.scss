@@ -1,0 +1,51 @@
+.buttonArrowScroll :global {
+  .button-arrow-scroll {
+    height: 42px;
+    width: 42px;
+    z-index: 2;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--button-additional);
+    position: fixed;
+    right: 80px;
+    bottom: 40px;
+    box-shadow: 0 0 7px 0 var(--shadow);
+    transition: box-shadow 0.3s ease-in-out, opacity 0.25s ease-in-out;
+    cursor: pointer;
+    opacity: 0;
+    -webkit-tap-highlight-color: transparent; // Remove the blue highlight on mobile
+
+    @media only screen and (max-width: 816px) {
+      right: 15px;
+      bottom: 60px;
+    }
+
+    &.is-shown {
+      opacity: 1;
+    }
+
+    &.is-fixed {
+      position: absolute;
+      top: -40px;
+      transform: translateY(-100%);
+    }
+
+    svg {
+      transition: transform 0.3s ease-in-out;
+      color: var(--accent-icon);
+      width: 28px;
+      height: 28px;
+      left: calc(50% - 14px);
+      position: absolute;
+      top: calc(50% - 14px);
+    }
+
+    &:hover {
+      box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.4);
+
+      svg {
+        transform: scale(0.9);
+      }
+    }
+  }
+}

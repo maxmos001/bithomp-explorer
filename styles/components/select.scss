@@ -1,0 +1,101 @@
+@mixin react-select {
+  .react-select__control {
+    border-color: var(--unaccent-icon);
+    border-radius: 0;
+    height: 40px;
+    box-shadow: none;
+    background-color: var(--background-input);
+    transition: background-color .5s, border-color 0.5s;
+
+    &:hover {
+      border-color: var(--accent-link);
+      box-shadow: 0 0 5px var(--unaccent-icon);
+    }
+
+    .react-select__value-container {
+      text-align: left;
+      .react-select__input-container {
+        color: var(--text-main);
+      }
+    }
+    .react-select__input {
+      position: absolute;
+    }
+  }
+
+  .react-select__single-value {
+    text-align: left;
+  }
+
+  &.react-select--is-disabled {
+    .react-select__control {
+      background-color: var(--background-input-readonly);
+    }
+
+    .react-select__single-value,
+    .react-select__indicator {
+      opacity: 0.45;
+    }
+  }
+
+  .react-select__control--is-focused {
+    box-shadow: 0 0 5px var(--unaccent-icon);
+  }
+
+  .react-select__menu {
+    border-radius: 0;
+    margin-top: -1px;
+    z-index: 2;
+    box-shadow: none;
+    background-color: var(--background-secondary);
+    box-sizing: border-box !important;
+    inset: 100% 0 auto !important;
+    border: 1px solid var(--accent-icon);
+    word-wrap: break-word;
+  }
+
+  .react-select__menu-list {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .react-select__option {
+    text-align: left;
+    background-color: var(--background-secondary);
+    color: var(--text-main);
+
+    &--is-focused {
+      border-color: hsl(0, 0%, 80%) !important;
+    }
+
+    &--is-selected {
+      color: var(--background-main);
+      background: var(--accent-icon);
+    }
+
+    &:hover {
+      background: var(--unaccent-icon);
+    }
+  }
+
+  .react-select__dropdown-indicator {
+    color: var(--accent-icon);
+    &:hover {
+      color: var(--accent-icon);
+    }
+  }
+
+  .react-select__indicator {
+    &-separator {
+      display: none;
+    }
+  }
+
+  .react-select__indicator-separator {
+    display: none;
+  }
+
+  .react-select__single-value {
+    color: var(--text-main);
+  }
+}

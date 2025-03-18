@@ -1,0 +1,14 @@
+@use "select.scss";
+
+.simple-select {
+  @include select.react-select;
+  max-width: 400px;
+  display: inline-block;
+}
+
+.quarter,
+.halv {
+  .simple-select {
+    width: 100%;
+  }
+}

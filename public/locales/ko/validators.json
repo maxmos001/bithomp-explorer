@@ -1,0 +1,19 @@
+{
+  "table": {
+    "validator": "검증자",
+    "server-country": "서버 국가",
+    "server-location": "서버 위치",
+    "cloud-private": "클라우드/프라이빗",
+    "network-asn": "네트워크 ASN",
+    "owner-country": "소유자 국가",
+    "votes-for": "찬성 투표",
+    "last-seen": "마지막 확인",
+    "text": {
+      "domain-verified-toml": "검증된 도메인 (TOML 파일)",
+      "unl": "In the Unique Node List (UNL)",
+      "negative-unl": "in the Negative UNL"
+    }
+  },
+  "domain-legacy": "도메인 (증명 오래됨)",
+  "text0": "벨리데이터 목록 <1>{{url}}</1>에는 {{sequence}} 시퀀스와 {{expiration}} 만료가 있습니다.<br/>이 목록에는 아래에 나열된 {{validatorCount}} 벨리데이터가 포함되어 있습니다."
+}

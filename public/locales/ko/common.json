@@ -1,0 +1,653 @@
+{
+  "menu": {
+    "amm": {
+      "amm": "AMM",
+      "pools": "AMM pools",
+      "explorer": "AMM explorer"
+    },
+    "company": {
+      "about-us": "우리에 대해"
+    },
+    "services": {
+      "services": "서비스",
+      "nft-mint": "NFT 민팅",
+      "tax-reports": "Tax reports"
+    },
+    "business": {
+      "advertise": "광고",
+      "eaas": "서비스형 탐색기",
+      "build-unl": "UNL 생성"
+    },
+    "usernames": "사용자명을 등록하세요",
+    "project-registration": "프로젝트 등록하세요",
+    "price-alerts": "{{nativeCurrency}} 가격 알림",
+    "submit-offline-tx": "오프라인 거래 제출",
+    "ledger": "레저 거래",
+    "nft": {
+      "explorer": "탐색기",
+      "volumes": "거래량",
+      "sales": "판매",
+      "minters": "채굴자",
+      "distribution": "분배 (홀더)",
+      "statistics": "실시간 통계",
+      "nfts": "계정의 NFT",
+      "offers": "계정의 제안",
+      "marketplaces": "마켓플레이스",
+      "collections": "컬렉션"
+    },
+    "network": {
+      "blockchain": "블록체인",
+      "nodes": "노드",
+      "governance": "거버넌스",
+      "activations": "활성화된 계정 (차트)",
+      "distribution": "{{nativeCurrency}} 분배",
+      "last-ledger-information": "최근 원장 정보",
+      "last-ledger-transactions": "최근 거래 정보",
+      "verified-domains": "검증된 도메인",
+      "validators": "벨리데이터",
+      "amendments": "수정사항",
+      "unl-report": "UNL report",
+      "genesis": "Genesis 계정"
+    },
+    "developers": {
+      "developers": "개발자",
+      "account-generation": "계정 일반화",
+      "faucet": "퍼셋",
+      "api": "API 문서화",
+      "api-admin": "API 계정"
+    },
+    "legal": "정책",
+    "disclaimer": "면책조항",
+    "privacy-policy": "개인정보처리방침",
+    "terms-and-conditions": "이용약관",
+    "customer-support": "고객지원",
+    "press": "언론",
+    "merch": "MD샵",
+    "donate": "기부",
+    "sponsored": {
+      "title": "지원받음",
+      "buy": "XRP 구매",
+      "earn": "XRP 수익창출",
+      "play": "XRP 플레이"
+    },
+    "learn-more": {
+      "title": "더 알아보기"
+    }
+  },
+  "components": {
+    "expiration-select": {
+      "1d": "1일",
+      "3d": "3일",
+      "7d": "7일",
+      "14d": "14일",
+      "30d": "30일",
+      "90d": "90일"
+    },
+    "target-table-select": {
+      "01": "L1 - 메인 테이블",
+      "02": "L2 - 내 테이블"
+    }
+  },
+  "signin": {
+    "connect": "연결",
+    "signin": "로그인",
+    "signout": "로그아웃",
+    "choose-app": "사용할 앱을 선택하세요",
+    "login-with": "로그인하기 {{appName}}",
+    "sign-with": "서명하기 {{appName}}",
+    "amount": {
+      "set-price": "가격을 설정하세요",
+      "enter-amount": "금액을 압력하세요"
+    },
+    "expiration": "만료",
+    "target-table": "Target table",
+    "statuses": {
+      "check-app": "{{appName}} app의 절차를 따라주세요."
+    },
+    "xaman": {
+      "open-app": "Xaman 앱을 여세요",
+      "change-settings": "설정에 가서 테스트넷 노드를 고르세요",
+      "scan-qr": "Xaman 앱에서 QR코드를 찍으세요.",
+      "statuses": {
+        "redirecting": "Xaman로 재연결 중입니다",
+        "wait": "기다려주세요",
+        "check-push": "푸시 알림을 설정하세요.",
+        "expired": "QR코드가 만료되었습니다. 다시 시도하세요."
+      }
+    },
+    "actions": {
+      "view": "내 계정 페이지",
+      "my-transactions": "내 거래",
+      "send": "전송",
+      "my-nfts": "내 NFT",
+      "my-nft-offers": "내 NFT 제안"
+    },
+    "confirm": {
+      "set-did": "Setting a DID",
+      "set-domain": "도메인을 설정합니다",
+      "set-avatar": "아바타를 설정",
+      "nft-create-transfer-offer-header": "NFT transfer",
+      "nft-transfer": "저는 그 NFT를 무료로 목적지 계정에 제공하고 있습니다. <2>목적지 계정은 NFT 전송을 수락해야 합니다</2>.",
+      "nft-accept-sell-offer-header": "NFT 구매",
+      "nft-accept-buy-offer-header": "Selling NFT",
+      "nft-create-sell-offer-header": "출품(판매)",
+      "nft-create-buy-offer-header": "구매 제안을 준비하세요",
+      "nft-accept-offer": "{{webSiteName}}는 탈중앙화 마켓플레이스에 대한 액세스를 제공하는 것일 뿐, NFT의 진위 여부 및 정당성을 검증하거나 보증하는 것이 아님을 인정합니다. 본인은 <4>이용약관</4>을 읽었으며, {{webSiteName}}에서 NFT를 구매, 판매 또는 사용하는 모든 조건에 동의합니다.",
+      "nft-create-sell-offer": "리스팅에 서명하면 NFT를 즉시 구매할 수 있다는 것을 알고 있습니다",
+      "nft-burn-header": "NFT 소각",
+      "nft-burn": "NFT는 영구적으로 삭제되며, 더 이상 소유, 양도, 구매 또는 판매할 수 없음을 이해합니다. 이 조치는 취소할 수 없습니다"
+    },
+    "set-account": {
+      "domain": "도메인",
+      "enter-domain": "도메인을 입력하세요."
+    },
+    "status": {
+      "awaiting-crawler": "크롤러가 데이터를 업데이트할 때까지 기다리는 중",
+      "awaiting-broker": "{{serviceName}}가 제안을 수락할 때까지 기다리는 중",
+      "failed-broker": "{{serviceName}}에 제안 알림에 실패했습니다. 이를 취소할 수 있습니다."
+    },
+    "nft-offer": {
+      "counteroffer": "당신은 반대 제안을 하고 있으며, 이 제안은 20초 이내에 자동으로 수락되어야 합니다. 만약 수락되지 않으면 언제든지 취소할 수 있습니다.",
+      "nft-price": "NFT 가격",
+      "fee": "{{serviceName}} 수수료 ({{feeText}})",
+      "total": "총합"
+    }
+  },
+  "footer": {
+    "cookie": {
+      "we-use-cookie": "쿠키를 사용합니다"
+    }
+  },
+  "home": {
+    "title": "{{explorerName}} 탐색기가 {{nativeCurrency}} 레저를 감지했습니다",
+    "description": "{{nativeCurrency}} 가격 차트 | {{nativeCurrency}} 통계 | NFT 탐색기 | 지갑 주소 조회 | {{explorerName}} NFT 거래량 | NFT 구매 및 판매 | {{explorerName}} 서비스",
+    "search-placeholder": "주소/거래/NFT/사용자명/페이스트링/제안/통화 해시로 검색하기",
+    "search-placeholder-short": "주소/거래/사용자별 검색",
+    "scan-qr": "QR코드를 스캔하세요",
+    "whales": {
+      "header": "지난 24시간 동안 가장 중요한 거래"
+    },
+    "stat": {
+      "header": "{{ledgerName}} 실시간 통계",
+      "ledger-index": "원장 지표",
+      "close-time": "폐쇄시간",
+      "transactions": "거래",
+      "txs-per-sec": "초",
+      "quorum": "유효 쿼럼",
+      "proposers": "제안자",
+      "accounts": "거래",
+      "accountsActiveLast24h": "활성 계정 (24h)",
+      "transactionsLast24h": "거래 (24h)",
+      "paymentsLast24h": "지불 (24h)",
+      "feesLast24h": "수수료 (24h)",
+      "usernames": "사용자명",
+      "nft": {
+        "created": "NFT 채굴됨",
+        "burned": "NFT 소각",
+        "owners": "현재 소유자",
+        "issuers": "NFT 발행자",
+        "transfers": "NFT 전환",
+        "for-sale": "NFT 판매 중"
+      },
+      "escrows": "Escrows",
+      "amms": "AMM pools",
+      "nodes": "노드"
+    }
+  },
+  "last-ledger-information": {
+    "ledger-hash": "레저-해시",
+    "ledger": "레저",
+    "ledger-closed-at": "원장 폐쇄",
+    "ledger-interval": "원장 간격",
+    "transactions": "거래",
+    "transaction-speed": "초당 거래량",
+    "proposers": "제안자",
+    "validation-quorum": "유효한 쿼럼",
+    "base-fee": "기본 비용",
+    "base-reserve": "기본 준비금",
+    "increment-reserve": "준비금 증가",
+    "total-supply": "전체 공급",
+    "total-burned": "전체 소각량"
+  },
+  "nft-statistics": {
+    "header": "NFT 실시간 통계",
+    "text0": "이 정보는 약간 오래된 것으로, {{lag}} 원장을 따라잡아야 합니다.<br/>데이터는 원장 #{{crawlerIndex}}, ({{crawlerTime}})에 대해 제공됩니다.<br/>마지막 유효한 원장은 #{{currentLedgerIndex}}, ({{currentLedgerTime}})입니다.",
+    "ledger-index": "원장 지표",
+    "created": "채굴됨",
+    "burned": "소각됨",
+    "exist": "현재 존재함",
+    "burnable": "채굴자에 의해 소각될 수 있음",
+    "only-xrp": "XRP로만 판매 가능합니다",
+    "transferable": "누구에게나 전송할 수 있습니다",
+    "owners": "현재 소유자",
+    "issuers": "전체 발행자",
+    "transfers": "NFT 전송기",
+    "for-sale": "판매 중인 NFT",
+    "for-sale-without-destination": "공적 판매를 위한 NFT",
+    "for-sale-with-destination": "직접판매용 NFT"
+  },
+  "alerts": {
+    "text0": "<6>{{linkText}}</6>에서 {{ nativeCurrency }}/USD 또는 {{ nativeCurrency }}/BTC의 시장 가격이 1시간 이내에 5% 이상 또는 1일 이내에 10% 이상 변동하면 알림을 받을 수 있습니다.",
+    "text1": "텔레그램 채널 <1>bithomp</1> 또는 X 계정 <4>XRP_PriceAlerts</4>를 팔로우하세요.",
+    "last-alerts": "최근 50개 알림",
+    "date-and-time": "날짜 및 시간",
+    "currency-pair": "통화 페어",
+    "change-duration": "변경기간",
+    "change": "변경",
+    "old-rate": "이전 요금",
+    "new-rate": "새로운 요금"
+  },
+  "genesis": {
+    "text0": "레저<1>32570</1>는 XRPL의 역사에서 약 1주째인 가장 오래된 레저입니다. <3>레저 1부터 32569까지는 2012년 불의의 사고로 인해 손실되었습니다</3>.",
+    "ledger-continue": "XRP 레저의 상태는 모든 원장 버전에 기록되기 때문에 누락된 기록 없이 원장을 계속 유지할 수 있습니다",
+    "ledger-index": "원장 지표",
+    "account-count": "계정 수",
+    "inception": "인셉션",
+    "balance-update": "잔액 업데이트",
+    "details": "상세정보",
+    "address": "주소",
+    "genesis-balance": "Genesis 잔액",
+    "rippletrade-username": "Rippletrade 사용자명",
+    "nickname": "별명",
+    "genesis-index": "Genesis 지표"
+  },
+  "developer": {
+    "header": "빗썸 API 키 요청",
+    "email": "이메일 주소:",
+    "url": "웹사이트/앱 URL",
+    "description": "프로젝트 설명 및 API 사용 세부 정보:",
+    "success": "Thank you. The API token was sent to your e-mail.",
+    "error": {
+      "url-empty": "사이트/앱 URL을 입력하세요",
+      "url-invalid": "유효한 URL을 입력하세요",
+      "description-empty": "당신의 프로젝트에 대한 설명을 추가하세요",
+      "description-invalid": "프로젝트에 대한 자세한 설명을 작성해 주세요."
+    }
+  },
+  "press": "이것은 미디어 및 언론 전문가가 인쇄 및 웹용으로 사용할 Bithomp의 공식 로고입니다 (svg, png, eps, pdf, 어두운 배경 및 밝은 배경용). 미디어 문의는 <2>문의하기</2>를 통해 연락해 주세요.",
+  "page-not-found": {
+    "header": "페이지를 찾을 수 없습니다",
+    "text": "<2>여기</2>를 클릭하면 홈페이지로 이동합니다."
+  },
+  "receipt": {
+    "quantity": "수량",
+    "items": "아이템",
+    "price": "가격",
+    "total": "전체",
+    "paid": "지불완료",
+    "order-id": "ID 오더"
+  },
+  "button": {
+    "set-domain": "도메인을 설정합니다",
+    "continue": "계속",
+    "cancel": "취소",
+    "accept": "확인",
+    "submit": "제출",
+    "search": "탐색",
+    "print": "출력",
+    "download": "다운로드",
+    "copy": "복사",
+    "copied": "복사되었습니다",
+    "copy-my-address": "주소를 복사하세요",
+    "sign": "서명",
+    "nft": {
+      "add-another-sell-offer": "추가 판매 제안하기",
+      "transfer": "NFT 전송",
+      "update-sell-offer": "판매 제안 업데이트하기",
+      "cancel-sell-offer-for": "{{amount}}에 대한 판매 제안 취소",
+      "cancel-buy-offer-for": "{{amount}}에 대한 구매 제안 취소",
+      "cancel-transfer": "NFT 변환 취소",
+      "accept-transfer": "NFT 변환 허용",
+      "buy-for-amount-on": "{{service}}에서 {{amount}}에 구매",
+      "buy-for-amount": "{{amount}} 구매",
+      "sell-for-amount": "Sell for {{amount}}",
+      "make-offer": "제안하기",
+      "list-for-sale": "판매 리스트",
+      "burn": "NFT를 소각하세요"
+    }
+  },
+  "general": {
+    "error": "오류",
+    "no-data": "데이터를 찾을 수 없습니다",
+    "loading": "대기 중",
+    "login-to-bithomp-pro": "더 많은 데이터를 로드하려면 <1>로그인한</1> Bithomp Pro 구독자가 필요합니다.",
+    "renew-bithomp-pro": "귀하의 Bithomp Pro 구독이 만료되었습니다. <1>구독을 갱신하세요</1>",
+    "load-failed": "로딩에 실패했습니다",
+    "all-issuers": "모든 발행자",
+    "no-expiration": "무기한",
+    "no-uri": "URI가 지정되지 않았습니다",
+    "no-media": "미디어를 찾을 수 없습니다",
+    "viewer": "뷰어",
+    "developer-mode": "개발자 모드",
+    "search": "검색",
+    "of-many": "중에서",
+    "of": "의",
+    "sort-by": "정렬 기준"
+  },
+  "form": {
+    "error": {
+      "destination-tag-invalid": "유효하지 않은 대상 태그입니다",
+      "price-empty": "금액을 입력해주세요.",
+      "address-empty": "주소를 입력해주세요.",
+      "address-invalid": "유효한 주소를 입력해주세요.",
+      "domain-empty": "웹 도메인을 입력해주세요.",
+      "domain-invalid": "유효한 웹 도메인을 입력해주세요.",
+      "description-empty": "설명을 입력해주세요.", 
+      "description-short": "설명이 너무 짧습니다.",
+      "email-empty": "이메일을 입력하세요",
+      "email-invalid": "유효한 이메일 주소를 입력하세요",
+      "password-empty": "비밀번호를 입력하세요",
+      "password-invalid": "Invalid password."
+    },
+    "placeholder": {
+      "destination-tag": "목적지 태그를 입력해주세요 (필요한 경우)",
+      "uri": "URI를 입력해주세요"
+    }
+  },
+  "error": {
+    "payment-partly": "<b>{{currency}} {{required}}</b>가 필요하지만 {{received}} {{currency}}만 받았습니다. 나머지 금액을 송금해 주세요.",
+    "Network Error": "인터넷이 연결되어 있지 않습니다;",
+    "Request failed with status code 429": "요청사항이 너무 많습니다. 나중에 다시 시도하세요",
+    "Request failed with status code 404": "해당 네트워크에서는 이 API 호출이 허용되지 않습니다",
+    "Request failed with status code 403": "로그아웃된 것 같습니다. 다시 로그인해주세요.",
+    "Request aborted": "요청이 취소되었습니다"
+  },
+  "errors": {
+    "token": {
+      "required": "계속하려면 로그인해주세요"
+    },
+    "partner": {
+      "not_found": "프로젝트가 없습니다."
+    },
+    "access_token": {
+      "not_found": "API 키가 없습니다."
+    },
+    "address": {
+      "invalid_signature_address": "유효하지 않은 서명 주소입니다. 올바른 주소로 서명했는지 확인해주세요.",
+      "limit_reached": "더 이상 주소를 추가할 수 없습니다. 한도에 도달했습니다.",
+      "not_activated": "이 주소는 아직 활성화되지 않았습니다. 활성화하려면 20 XRP를 보유해야 합니다."
+    },
+    "blob": {
+      "invalid_signature_address": "추가하려는 주소로 메시지에 서명해야 합니다."
+    }
+  },
+  "error-api": {
+    "search is too short": "검색을 위한 최소 단어를 입력해주세요",
+    "issuer username is not found or invalid": "유효하지 않은 발행자의 사용자명입니다",
+    "issuer is invalid": "유효하지 않은 발행자의 주소입니다",
+    "owner username is not found or invalid": "유효하지 않은 소유자의 사용자명입니다",
+    "owner is invalid": "유효하지 않은 소유자의 주소입니다",
+    "destination username is not found or invalid": "유효하지 않은 대상의 사용자명입니다",
+    "destination is invalid": "유효하지 않은 대상의 주소입니다",
+    "currency is invalid": "유효하지 않은 통화입니다",
+    "currencyIssuer username is not found or invalid": "유효하지 않은 통화 발행자의 사용자명임니다",
+    "currencyIssuer is invalid": "유효하지 않은 통화 발행자의 주소입니다",
+    "Token information is not found": "해당 ID에 대한 정보를 찾을 수 없습니다",
+    "No nfts information is found": "죄송합니다. 오류가 발생했습니다. 다시 시도해주세요",
+    "Address is not valid": "유효하지 않은 주소입니다"
+  },
+  "error-tx": {
+    "terNO_ACCOUNT": "거래를 전송하는 주소가 아직 원장에 자금이 충전되지 않았습니다",
+    "tefMAX_LEDGER": "The transaction has expired."
+  },
+  "units": {
+    "seconds-short": "초",
+    "minutes-short": "분",
+    "hours-short": "시",
+    "days-short": "일"
+  },
+  "period": {
+    "all": "",
+    "year": "최근 1년",
+    "month": "최근 한달",
+    "week": "최근 일주일",
+    "day": "최근 24시간"
+  },
+  "table": {
+    "no-value": "값 없음",
+    "updated": "업데이트됨",
+    "currency": "통화",
+    "currency-issuer": "통화 발행자",
+    "destination-tag": "대상 태그",
+    "uri": "URI", 
+    "mints": "민팅", 
+    "view": "보기", 
+    "period": "기간", 
+    "mint-period": "민팅 기간", 
+    "burn-period": "소각 기간", 
+    "warning": "경고",
+    "sequence": "절차",
+    "version": "버전",
+    "domain": "도메인",
+    "index": "지표",
+    "address": "주소",
+    "date": "날짜",
+    "time": "시간",
+    "amount": "금액",
+    "name": "사용자명",
+    "sender": "수신자",
+    "balance": "잔액",
+    "memo": "메모",
+    "transaction": "거래",
+    "owner": "소유자",
+    "owners-now": "현재 소유자",
+    "accepted-by": "의해 승인됨",
+    "issuer": "발행자",
+    "minter": "채굴자",
+    "receiver": "받는 사람",
+    "issuer-owner": "발행자 & 소유자",
+    "issuers": "발행자",
+    "broker": "중개인",
+    "seller": "판매자",
+    "buyer": "구매자",
+    "sold": "판매됨",
+    "sold_few": "판매됨",
+    "sold-on": "판매됨",
+    "minted-on": "채굴됨",
+    "type": "유형",
+    "status": "상태",
+    "hash": "해시",
+    "serial": "연속",
+    "taxon": "분류군",
+    "placed": "대체됨",
+    "accepted": "승인되었습니다",
+    "canceled": "취소되었습니다",
+    "offer": "제안",
+    "expiration": "만료",
+    "expired": "만료되었습니다",
+    "destination": "대상",
+    "sales": "판매",
+    "volume": "판매량",
+    "price": "가격",
+    "external-url": "외부 URL",
+    "description": "설명",
+    "collection": "컬렉션",
+    "collection-family": "컬렉션 패밀리",
+    "transfer-fee": "로열티",
+    "flag": "플래그",
+    "flags": "플래그",
+    "count": "금액",
+    "nfts": "NFT",
+    "minted": "채굴됨",
+    "transferred": "전송됨",
+    "burned": "소각됨",
+    "attributes": "속성",
+    "metadata": "메타데이터",
+    "ledger-data": "원장-데이터",
+    "history": "기록",
+    "sell-offers": "판매 제안",
+    "buy-offers": "구매 제안",
+    "nfts-now": "NFT (현재)",
+    "traded-nfts": "거래된 NFT",
+    "buyers": "구매자",
+    "raw-data": "최초 데이터",
+    "username": "사용자명",
+    "floor-now": "Floor (now)",
+    "related-lists": "연관된 리스트",
+    "by-issuer": "발행자에 의한",
+    "by-owner": "소유자에 의한",
+    "by-taxon": "분류군에 의한",
+    "all-nfts": "모든 NFT",
+    "on-sale": "판매 중",
+    "social-share": "공유하기",
+    "marketplace": "마켓 플레이스",
+    "public-key": "공개 키",
+    "text": {
+      "private-offer": "개인 오퍼",
+      "show-extended-statistics": "확장된 실시간 데이터를 보여줍니다",
+      "include-without-media-data": "미디어 데이터가 없는 NFT를 포함합니다.",
+      "include-burned-nfts": "소각된 NFT가 포함되어 있습니다",
+      "no-expiration": "만료기한이 없습니다",
+      "no-offers": "제안을 찾을 수 없습니다",
+      "unspecified": "지정되지 않은 상태",
+      "sell": "판매",
+      "buy": "구매",
+      "show": "보여주기",
+      "hide": "숨기기",
+      "see-on": "<2><0>{{marketplace}}</0></2>에서 보기",
+      "valid": "유효함",
+      "invalid": "유효하지 않음",
+      "no-votes": "투표가 없습니다"
+    },
+    "filter": {
+      "valid": "유효함",
+      "invalid": "유효하지 않음",
+      "active": "모두 활성화되었습니다",
+      "historical": "기록",
+      "all": "전체"
+    },
+    "text-status": {
+      "NFT is not owned by the seller account": "판매자가 NFT를 소유하고 있지 않습니다",
+      "Offer is expired": "만료되었습니다",
+      "Unable to verify balance of the buyer account": "구매자 계정의 잔액을 확인할 수 없습니다",
+      "Insufficient funds on the buyer account": "구매자가 자금이 부족합니다",
+      "Seller has no trustline for the token or it cannot be verified": "판매자가 토큰에 대한 트러스트 라인이 없거나 확인할 수 없습니다",
+      "NFT Issuer has no trustline for the token to accept royalty or it cannot be verified": "NFT 발행자가 로열티를 받을 수 있는 토큰에 대한 트러스트 라인이 없거나 확인할 수 없습니다",
+      "NFT is already belongs to the buyer": "NFT는 이미 구매자의 것입니다"
+    }
+  },
+  "tabs": {
+    "list": "리스트",
+    "tiles": "분류군",
+    "secondary-sales": "2차",
+    "primary-sales": "1차",
+    "primaryAndSecondary-sales": "전체 세일",
+    "all-time": "24시간",
+    "year": "365일",
+    "month": "30일",
+    "week": "7일",
+    "day": "24시간",
+    "hour": "1시간",
+    "currencies": "통화",
+    "issuers": "발행자",
+    "marketplaces": "마켓플레이스",
+    "brokers": "브로커",
+    "charts": "차트",
+    "collections": "컬렉션",
+    "image": "이미지",
+    "video": "비디오",
+    "audio": "오디오",
+    "model": "3D 모델",
+    "owned-offers": "소유한 상태",
+    "offers-for-owned-nfts": "소유 NFT 제안",
+    "privately-offered-to-address": "비공개 수신 제안",
+    "all": "전체",
+    "buy": "구매",
+    "sell": "판매",
+    "buyNow": "Buy now",
+    "publicAndKnownBrokers": "공공 & MP",
+    "onSale": "{{nativeCurrency}}로 판매 중",
+    "all-tokens": "모든 토큰",
+    "native-currency-only": "{{nativeCurrency}}만",
+    "mintedNew": "최신", 
+    "mintedOld": "가장 오래된", 
+    "existing": "기존", 
+    "burned": "소각됨"
+  },
+  "xaman": {
+    "new-qr": "새로운 QR코드를 사용하세요"
+  },
+  "explorer": {
+    "header": {
+      "main": "{{explorerName}} 탐색기",
+      "amm": "AMM 풀 정보",
+      "object": "객체 정보",
+      "account": "계정 정보",
+      "transaction": "거래 정보",
+      "nft": "NFT",
+      "nfts": "NFTs",
+      "nft-offer": "NFT 제안",
+      "nft-offers": "NFT 제안",
+      "nft-volumes": "NFT sales volumes"
+    },
+    "enter-address": "XRPL 주소 또는 사용자명으로 로그인하세요",
+    "searching-tx-nft-nftoffer": "Tx/NFT ID/NFT 제안 검색하기",
+    "searching-for-addresses": "주소를 찾고 있습니다",
+    "menu": {
+      "account": "계정",
+      "transactions": "거래",
+      "tokens": "토큰"
+    },
+    "different-network": "이 트랜잭션은 <1>{{networkNameOrId}}</1> 네트워크에서 발생했습니다.",
+    "check-tx-on-different-explorer": "자세한 내용은 <2><0>여기</0></2>에서 확인하세요.",
+    "not-supported-network": "지원하지 않는 네트워크입니다",
+    "no-slashes": "검색에는 슬래시(/)를 포함해서는 안 됩니다."
+  },
+  "nft-explorer": {
+    "header": "NFT 탐색기"
+  },
+  "nft-offers": {
+    "header": "NFT 제안",
+    "owned-desc": "여기에서 NFT에 대한 구매 및 판매 제안을 검색하고 주소 또는 사용자 이름을 입력해 제안을 확인할 수 있습니다",
+    "for-owned-nfts-desc": "여기에서 계정별로 소유한 NFT에 대한 구매 제안을 검색하고 주소 또는 사용자 이름을 입력하면 수신된 제안을 확인할 수 있습니다",
+    "privately-offered-to-address-desc": "여기에서 계정에 대해 비공개로 생성된 제안(목적지 포함)을 검색할 수 있으며, 종종 NFT 전송(가격 0)에 사용되며, XRPL 주소 또는 사용자명을 입력하면 수신된 제안을 확인할 수 있습니다",
+    "no-nft-offers": "NFT 제안을 찾지 못했습니다",
+    "cancel-invalid-offer_one": "유효하지 않은 제안을 취소합니다",
+    "cancel-invalid-offer_other": "유효하지 않은 {{count}}개의 제안 취소",
+    "cancel-expired-offer_one": "만료된 제안을 취소합니다",
+    "cancel-expired-offer_other": "만료된 {{count}}개의 제안 취소"
+  },
+  "nft-offer": {
+    "header": "NFT 제안",
+    "desc": "NFT의 제안 ID를 입력하여 NFT의 제안을 검색할 수 있습니다.",
+    "enter-offer-id": "NFT 제안 ID를 입력하세요",
+    "selling": "판매",
+    "buying": "구매"
+  },
+  "nfts": {
+    "header": "계정의 NFT",
+    "desc": "여기에서 NFT를 검색하고 주소를 입력해 어떤 NFT를 보유하고 있는지 확인할 수 있습니다.",
+    "search-by-name": "NFT 이름으로 검색하세요",
+    "search-by-issuer": "NFT 발행자 탐색",
+    "search-by-taxon": "NFT 분류군 탐색",
+    "search-by-owner": "NFT 소유자 탐색",
+    "search-by-buyer": "NFT 구매자 탐색",
+    "search-by-seller": "NFT 판매자 탐색",
+    "no-nfts": "귀하의 검색 매개변수로 어떤 NFT도 찾을 수 없습니다",
+    "on-service": "{{service}}에서",
+    "amount-on-service": "{{service}}에서 {{amount}}",
+    "load-more": "XRPL에 대한 데이터를 찾을 수 없습니다. 잠시만 기다려주세요",
+    "end": "저희가 찾을 수 있는 모든 NFT는 다음과 같습니다"
+  },
+  "nft-sales": {
+    "header": "NFT 판매",
+    "load-more": "XRPL 데이터를 찾고 있습니다. 잠시만 기다려주세요",
+    "end": "리스트가 끝났습니다"
+  },
+  "links": {
+    "active-offers-same-account": "해당 계정의 활성화된 제안 보기",
+    "nfts-same-issuer": "동일한 발행자의 NFT",
+    "owned-nfts-same-account": "해당 계정에 의해 소유된 NFT",
+    "all": "전체",
+    "sold": "팔림"
+  },
+  "donate": {
+    "help-us": "가장 사용자 친화적인 XRPL 탐색기를 만들기 위한 저희의 임무를 도와주세요",
+    "it-helps": "여러분의 기부는 빗썸의 역량을 확충하고 지속적으로 발전하는 데 도움이 될 것입니다",
+    "address": "기부를 위한 XRPL 주소",
+    "donate-with-xaman": "Xaman에서 기부하세요"
+  },
+  "sponsored": {
+    "sponsored": "스폰서"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "desc": "Aquí puedes buscar por NFTs, introduce un ID de NFT y presiona el botón de buscar.",
+  "enter-nft-id": "Introduce el ID del NFT",
+  "holders": "Distribución (Poseedores)",
+  "nft-id-decoded-data": "NFT ID Información Decodificada",
+  "nft-not-found-on-that-network": "Este NFT no se ha encontrado en la red <1>{{network}}</1>.",
+  "table": {
+    "digest": "Resumen (Digest)",
+    "attention": "Atención",
+    "attention-texts": {
+      "no-uri": "Ese NFT carece de una URI, es incompatible con los estándares comunes aceptados.",
+      "no-metadata": "La URI dada falta en el metadata para ese NFT. Esto va en contra de los estándares comunes aceptados.",
+      "not-transferable": "Este NFT no es transferible; solo puede ser transferido a y por el emisor.",
+      "burnable": "El emisor (o la entidad autorizada por el emisor) puede destruir el NFT.",
+      "no-digest": "No se facilita Resumen (Digest) para este NFT. La integridad del NFT no puede ser varificada.",
+      "invalid-digest": "La comprobación de la integridad del NFT ha fallado. El Resumen (Digest) no oncuerda con el metadata del NFT."
+    },
+    "warnings": {
+      "nft-crawler-delay": "Alguna información está desactualizada, última actualización: {{lastUpdate}}. Nuestros servidores están poniéndose al día, comprueba más tarde para tener información más actualizada."
+    }
+  }
+}

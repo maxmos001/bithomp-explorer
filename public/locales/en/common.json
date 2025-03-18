@@ -1,0 +1,653 @@
+{
+  "menu": {
+    "amm": {
+      "amm": "AMM",
+      "pools": "AMM pools",
+      "explorer": "AMM explorer"
+    },
+    "company": {
+      "about-us": "About us"
+    },
+    "services": {
+      "services": "Services",
+      "nft-mint": "Mint NFT",
+      "tax-reports": "Tax reports"
+    },
+    "business": {
+      "advertise": "Advertise",
+      "eaas": "Explorer as a Service",
+      "build-unl": "Build UNL"
+    },
+    "usernames": "Username registration",
+    "project-registration": "Project registration",
+    "price-alerts": "{{nativeCurrency}} price alerts",
+    "submit-offline-tx": "Submit offline transaction",
+    "ledger": "Ledger transactions",
+    "nft": {
+      "explorer": "Explorer",
+      "volumes": "Volumes",
+      "sales": "Sales",
+      "minters": "Minters",
+      "distribution": "Distribution (holders)",
+      "statistics": "Live statistics",
+      "nfts": "Account's NFTs",
+      "offers": "Account's Offers",
+      "marketplaces": "Marketplaces",
+      "collections": "Collections"
+    },
+    "network": {
+      "blockchain": "Blockchain",
+      "nodes": "Nodes",
+      "governance": "Governance",
+      "activations": "Activated accounts (chart)",
+      "distribution": "{{nativeCurrency}} distribution",
+      "last-ledger-information": "Last ledger information",
+      "last-ledger-transactions": "Last ledger transactions",
+      "verified-domains": "Verified domains",
+      "validators": "Validators",
+      "amendments": "Amendments",
+      "unl-report": "UNL report",
+      "genesis": "Genesis accounts"
+    },
+    "developers": {
+      "developers": "Developers",
+      "account-generation": "Account generation",
+      "faucet": "Faucet",
+      "api": "API documentation",
+      "api-admin": "API account"
+    },
+    "legal": "Legal",
+    "disclaimer": "Disclaimer",
+    "privacy-policy": "Privacy policy",
+    "terms-and-conditions": "Terms and conditions",
+    "customer-support": "Customer support",
+    "press": "Press",
+    "merch": "Merch shop",
+    "donate": "Donate",
+    "sponsored": {
+      "title": "Sponsored",
+      "buy": "Buy XRP",
+      "earn": "Earn on XRP",
+      "play": "Play XRP"
+    },
+    "learn-more": {
+      "title": "Learn more"
+    }
+  },
+  "components": {
+    "expiration-select": {
+      "1d": "1 day",
+      "3d": "3 days",
+      "7d": "7 days",
+      "14d": "14 days",
+      "30d": "30 days",
+      "90d": "90 days"
+    },
+    "target-table-select": {
+      "01": "L1 - Main table",
+      "02": "L2 - My table"
+    }
+  },
+  "signin": {
+    "connect": "Connect",
+    "signin": "Sign in",
+    "signout": "Sign out",
+    "choose-app": "Choose a signing app",
+    "login-with": "Login with {{appName}}",
+    "sign-with": "Sign with {{appName}}",
+    "amount": {
+      "set-price": "Set a price",
+      "enter-amount": "Enter amount"
+    },
+    "expiration": "Expiration",
+    "target-table": "Target table",
+    "statuses": {
+      "check-app": "Please follow instructions in the {{appName}} app."
+    },
+    "xaman": {
+      "open-app": "Open the Xaman app on your phone.",
+      "change-settings": "Go to settings and choose a testnet node.",
+      "scan-qr": "Scan this QR code with the Xaman app.",
+      "statuses": {
+        "redirecting": "Redirecting to Xaman...",
+        "wait": "Please wait...",
+        "check-push": "Check a push notification on your mobile.",
+        "expired": "The QR code is expired, request a new one."
+      }
+    },
+    "actions": {
+      "view": "My Account page",
+      "my-transactions": "My Transactions",
+      "send": "Send XRP",
+      "my-nfts": "My NFTs",
+      "my-nft-offers": "My NFT offers"
+    },
+    "confirm": {
+      "set-did": "Setting a DID",
+      "set-domain": "Setting a Domain",
+      "set-avatar": "Setting an Avatar",
+      "nft-create-transfer-offer-header": "NFT transfer",
+      "nft-transfer": "I'm offering that NFT for FREE to the Destination account, <2>the destination account would need to accept the NFT transfer</2>.",
+      "nft-accept-sell-offer-header": "NFT purchase",
+      "nft-accept-buy-offer-header": "Selling NFT",
+      "nft-create-sell-offer-header": "List for sale",
+      "nft-create-buy-offer-header": "Create Buy offer",
+      "nft-accept-offer": "I admit that {{webSiteName}} gives me access to a decentralised marketplace, and it cannot verify or guarantee the authenticity and legitimacy of any NFTs. I confirm that I've read the <4>Terms and conditions</4>, and I agree with all the terms to buy, sell or use any NFTs on {{webSiteName}}.",
+      "nft-create-sell-offer": "I understand, once my listing is signed, the NFT can be purchased instantly.",
+      "nft-burn-header": "NFT burning",
+      "nft-burn": "I understand that NFT will be permanently deleted, meaning, it can no longer be owned, transferred, purchased, or sold. This action can not be undone."
+    },
+    "set-account": {
+      "domain": "Domain",
+      "enter-domain": "Enter domain"
+    },
+    "status": {
+      "awaiting-crawler": "Awaiting for crawler to update the data",
+      "awaiting-broker": "Awaiting for {{serviceName}} to accept the offer",
+      "failed-broker": "Failed to notify {{serviceName}} about the offer. You can cancel it."
+    },
+    "nft-offer": {
+      "counteroffer": "You're making a counteroffer, which should to be accepted automatically within 20 seconds. If it's not accepted you can cancel it at any time.",
+      "nft-price": "NFT price",
+      "fee": "{{serviceName}} fee ({{feeText}})",
+      "total": "Total"
+    }
+  },
+  "footer": {
+    "cookie": {
+      "we-use-cookie": "We use cookies and similar technologies to improve your experience on our site."
+    }
+  },
+  "home": {
+    "title": "{{nativeCurrency}} Explorer | Scan {{nativeCurrency}} Ledger | {{explorerName}} Explorer",
+    "description": "Bithomp {{nativeCurrency}} Explorer. Track Ripple RLUSD, {{nativeCurrency}} accounts. Search {{nativeCurrency}} transactions. NFTs on {{explorerName}}. Validators, Amendments and much more.",
+    "search-placeholder": "Search by Address / Transaction / NFT / Username / PayString / Offer / Currency hash",
+    "search-placeholder-short": "Address / Transaction / Username",
+    "scan-qr": "SCAN A CODE",
+    "whales": {
+      "header": "The most significant transactions for the last 24 hours"
+    },
+    "stat": {
+      "header": "{{ledgerName}} live statistics",
+      "ledger-index": "Ledger index",
+      "close-time": "Close time",
+      "transactions": "Transactions",
+      "txs-per-sec": "txs/s",
+      "quorum": "Validation quorum",
+      "proposers": "proposers",
+      "accounts": "Accounts",
+      "accountsActiveLast24h": "Active accounts (24h)",
+      "transactionsLast24h": "Transactions (24h)",
+      "paymentsLast24h": "Payments (24h)",
+      "feesLast24h": "Fees (24h)",
+      "usernames": "Usernames",
+      "nft": {
+        "created": "NFT minted",
+        "burned": "NFT burned",
+        "owners": "Current owners",
+        "issuers": "NFT issuers",
+        "transfers": "NFT transfers",
+        "for-sale": "NFTs for sale"
+      },
+      "escrows": "Escrows",
+      "amms": "AMM pools",
+      "nodes": "Nodes"
+    }
+  },
+  "last-ledger-information": {
+    "ledger-hash": "Ledger hash",
+    "ledger": "Ledger",
+    "ledger-closed-at": "Ledger closed at",
+    "ledger-interval": "Ledger interval",
+    "transactions": "Transactions",
+    "transaction-speed": "Transactions per second",
+    "proposers": "Proposers",
+    "validation-quorum": "Validation quorum",
+    "base-fee": "Base fee",
+    "base-reserve": "Base reserve",
+    "increment-reserve": "Increment reserve",
+    "total-supply": "Total supply",
+    "total-burned": "Total burned"
+  },
+  "nft-statistics": {
+    "header": "NFT live statistics",
+    "text0": "The information is a bit outdated, we need to catch up with <1>{{lag}}</1> ledgers.<br/>The data is provided for the ledger #{{crawlerIndex}}, ({{crawlerTime}}).<br/>The last validated ledger is #{{currentLedgerIndex}}, ({{currentLedgerTime}}).",
+    "ledger-index": "Ledger index",
+    "created": "Minted",
+    "burned": "Burned",
+    "exist": "Currently exist",
+    "burnable": "Burnable by a minter",
+    "only-xrp": "Can be sold only for XRP",
+    "transferable": "Can be transferred to anyone",
+    "owners": "Current owners",
+    "issuers": "Total issuers",
+    "transfers": "NFT transfers",
+    "for-sale": "NFTs for sale",
+    "for-sale-without-destination": "NFTs for public sale",
+    "for-sale-with-destination": "NFTs for direct sale"
+  },
+  "alerts": {
+    "text0": "Get notified when {{ nativeCurrency }}/USD or {{ nativeCurrency }}/BTC market price by <6>{{linkText}}</6> changes for more than 5% within an hour or more than 10% within a day.",
+    "text1": "Follow the Telegram channel: <1>bithomp</1> or the X account: <4>XRP_PriceAlerts</4>.",
+    "last-alerts": "Last 50 alerts",
+    "date-and-time": "Date & time",
+    "currency-pair": "Currency pair",
+    "change-duration": "Change duration",
+    "change": "Change",
+    "old-rate": "Old rate",
+    "new-rate": "New rate"
+  },
+  "genesis": {
+    "text0": "The ledger <1>32570</1> is the earliest ledger available, approximately the first week of XRPL history, <3>ledgers 1 through 32569 were lost due to a mishap in 2012</3>.",
+    "ledger-continue": "Because the XRP Ledger's state is recorded in every ledger version, the ledger can continue without the missing history.",
+    "ledger-index": "Ledger index",
+    "account-count": "Account count",
+    "inception": "Inception",
+    "balance-update": "Balance update",
+    "details": "Details",
+    "address": "Address",
+    "genesis-balance": "Genesis balance",
+    "rippletrade-username": "Rippletrade username",
+    "nickname": " Nickname",
+    "genesis-index": "Genesis index"
+  },
+  "developer": {
+    "header": "Bithomp API key request",
+    "email": "Your e-mail address:",
+    "url": "Your website/app URL:",
+    "description": "Project description and API use details:",
+    "success": "Thank you. The API token was sent to your e-mail.",
+    "error": {
+      "url-empty": "Please enter your site/app URL.",
+      "url-invalid": "Please enter a valid URL.",
+      "description-empty": "Please add a description of your project.",
+      "description-invalid": "Please write a detailed description of your project."
+    }
+  },
+  "press": "This is the official logo for Bithomp to use by media and press professionals for print and web (svg, png, eps, pdf, for dark and light backgrounds). For media inquiries, please <2>contact us</2>.",
+  "page-not-found": {
+    "header": "The requested page wasn't found.",
+    "text": "Click <2>here</2> to check our landing page."
+  },
+  "receipt": {
+    "quantity": "qty.",
+    "items": "items",
+    "price": "price",
+    "total": "total",
+    "paid": "paid",
+    "order-id": "order id"
+  },
+  "button": {
+    "set-domain": "Set a Domain",
+    "continue": "Continue",
+    "cancel": "Cancel",
+    "accept": "Accept",
+    "submit": "Submit",
+    "search": "Search",
+    "print": "Print",
+    "download": "Download",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copy-my-address": "Copy my address",
+    "sign": "Sign",
+    "nft": {
+      "add-another-sell-offer": "Add another sell offer",
+      "transfer": "Transfer NFT",
+      "update-sell-offer": "Update the sell offer",
+      "cancel-sell-offer-for": "Cancel Sell offer for {{amount}}",
+      "cancel-buy-offer-for": "Cancel Buy offer for {{amount}}",
+      "cancel-transfer": "Cancel NFT transfer",
+      "accept-transfer": "Accept NFT transfer",
+      "buy-for-amount-on": "Buy for {{amount}} on {{service}}",
+      "buy-for-amount": "Buy for {{amount}}",
+      "sell-for-amount": "Sell for {{amount}}",
+      "make-offer": "Make offer",
+      "list-for-sale": "List for sale",
+      "burn": "Burn that NFT"
+    }
+  },
+  "general": {
+    "error": "Error",
+    "no-data": "No data available",
+    "loading": "Loading...",
+    "login-to-bithomp-pro": "Loading more data is available to <1>logged-in</1> Bithomp Pro subscribers.",
+    "renew-bithomp-pro": "Your Bithomp Pro subscription has expired. <1>Renew your subscription</1>.",
+    "load-failed": "Failed to load",
+    "all-issuers": "All issuers",
+    "no-expiration": "Never",
+    "no-uri": "No URI specified",
+    "no-media": "No media found",
+    "viewer": "Viewer",
+    "developer-mode": "Developer mode",
+    "search": "Search",
+    "of-many": "of many",
+    "of": "of",
+    "sort-by": "Sort by:"
+  },
+  "form": {
+    "error": {
+      "destination-tag-invalid": "Invalid destination tag.",
+      "price-empty": "Please enter an amount.",
+      "address-empty": "Please enter an address.",
+      "address-invalid": "Please enter a valid address.",
+      "domain-empty": "Please enter web domain.",
+      "domain-invalid": "Please enter a valid web domain.",
+      "description-empty": "Please enter a description.",
+      "description-short": "Description is too short.",
+      "email-empty": "Please enter your e-mail address.",
+      "email-invalid": "Please enter a valid e-mail address.",
+      "password-empty": "Please enter your password.",
+      "password-invalid": "Please enter a valid password."
+    },
+    "placeholder": {
+      "destination-tag": "Enter the Destination tag (if it is required)",
+      "uri": "Enter the URI"
+    }
+  },
+  "error": {
+    "payment-partly": "Please send the rest of the amount, so far we only received {{received}} {{currency}} when <b>{{required}} {{currency}}</b> is required.",
+    "Network Error": "It seems there is no internet connection ;(",
+    "Request failed with status code 429": "You are sending us too many requests, try later!",
+    "Request failed with status code 404": "Such API call is not allowed on that network",
+    "Request failed with status code 403": "It seems you're logged out, please log in again",
+    "Request aborted": "Request aborted"
+  },
+  "errors": {
+    "token": {
+      "required": "Please login to continue"
+    },
+    "partner": {
+      "not_found": "There are no projects"
+    },
+    "access_token": {
+      "not_found": "There are no API keys."
+    },
+    "address": {
+      "invalid_signature_address": "Invalid signature address. Make sure that you sign with the correct address.",
+      "limit_reached": "You can not add more addesses, you've reached the limit.",
+      "not_activated": "The address is not activated yet."
+    },
+    "blob": {
+      "invalid_signature_address": "You need to sign the message with the address that you're trying to add."
+    }
+  },
+  "error-api": {
+    "search is too short": "The name to search is too short",
+    "issuer username is not found or invalid": "Invalid issuer's username",
+    "issuer is invalid": "Invalid issuer's address",
+    "owner username is not found or invalid": "Invalid owner's username",
+    "owner is invalid": "Invalid owner's address",
+    "destination username is not found or invalid": "Invalid destination's username",
+    "destination is invalid": "Invalid destination's address",
+    "currency is invalid": "Invalid currency",
+    "currencyIssuer username is not found or invalid": "Invalid currency issuer's username",
+    "currencyIssuer is invalid": "Invalid currency issuer's address",
+    "Token information is not found": "We couldn't find any information for that ID",
+    "No nfts information is found": "Sorry, an error occured, please to search for somethig else.",
+    "Address is not valid": "Invalid address"
+  },
+  "error-tx": {
+    "terNO_ACCOUNT": "The address sending the transaction is not funded in the ledger (yet).",
+    "tefMAX_LEDGER": "The transaction has expired."
+  },
+  "units": {
+    "seconds-short": "s",
+    "minutes-short": "m",
+    "hours-short": "h",
+    "days-short": "d"
+  },
+  "period": {
+    "all": "",
+    "year": "For the last 365 days",
+    "month": "For the last 30 days",
+    "week": "For the last 7 days",
+    "day": "For the last 24 hours"
+  },
+  "table": {
+    "no-value": "no value",
+    "updated": "Updated",
+    "currency": "Currency",
+    "currency-issuer": "Currency issuer",
+    "destination-tag": "Destination tag",
+    "uri": "URI",
+    "mints": "Mints",
+    "view": "View",
+    "period": "Period",
+    "mint-period": "Mint period",
+    "burn-period": "Burn period",
+    "warning": "Warning",
+    "sequence": "Sequence",
+    "version": "Version",
+    "domain": "Domain",
+    "index": "Index",
+    "address": "Address",
+    "date": "Date",
+    "time": "Time",
+    "amount": "Amount",
+    "name": "Name",
+    "sender": "Sender",
+    "balance": "Balance",
+    "memo": "Memo",
+    "transaction": "Transaction",
+    "owner": "Owner",
+    "owners-now": "Owners (now)",
+    "accepted-by": "Accepted by",
+    "issuer": "Issuer",
+    "minter": "Minter",
+    "receiver": "Receiver",
+    "issuer-owner": "Issuer & Owner",
+    "issuers": "Issuers",
+    "broker": "Broker",
+    "seller": "Seller",
+    "buyer": "Buyer",
+    "sold": "Sold",
+    "sold_few": "Sold",
+    "sold-on": "Sold on",
+    "minted-on": "Minted on",
+    "type": "Type",
+    "status": "Status",
+    "hash": "Hash",
+    "serial": "Serial",
+    "taxon": "Taxon",
+    "placed": "Placed",
+    "accepted": "Accepted",
+    "canceled": "Canceled",
+    "offer": "Offer",
+    "expiration": "Expiration",
+    "expired": "Expired",
+    "destination": "Destination",
+    "sales": "Sales",
+    "volume": "Sales volume",
+    "price": "Price",
+    "external-url": "External URL",
+    "description": "Description",
+    "collection": "Collection",
+    "collection-family": "Collection family",
+    "transfer-fee": "Royalty",
+    "flag": "Flag",
+    "flags": "Flags",
+    "count": "Amount",
+    "nfts": "NFTs",
+    "minted": "Minted",
+    "transferred": "Transferred",
+    "burned": "Burned",
+    "attributes": "Attributes",
+    "metadata": "Metadata",
+    "ledger-data": "Ledger-data",
+    "history": "History",
+    "sell-offers": "Sell offers",
+    "buy-offers": "Buy offers",
+    "nfts-now": "NFTs (now)",
+    "traded-nfts": "Traded NFTs",
+    "buyers": "Buyers",
+    "raw-data": "Raw data",
+    "username": "Username",
+    "floor-now": "Floor (now)",
+    "related-lists": "Related lists",
+    "by-issuer": "By issuer",
+    "by-owner": "By owner",
+    "by-taxon": "By taxon",
+    "all-nfts": "All NFTs",
+    "on-sale": "On sale",
+    "social-share": "Sharing is caring",
+    "marketplace": "Marketplace",
+    "public-key": "Public key",
+    "text": {
+      "private-offer": "Private offer",
+      "show-extended-statistics": "Show extended statistics",
+      "include-without-media-data": "Include NFTs with no media",
+      "include-burned-nfts": "Include burned NFTs",
+      "no-expiration": "No expiration date",
+      "no-offers": "No offers found",
+      "unspecified": "unspecified",
+      "sell": "Sell",
+      "buy": "Buy",
+      "show": "show",
+      "hide": "hide",
+      "see-on": "See on <2><0>{{marketplace}}</0></2>",
+      "valid": "valid",
+      "invalid": "invalid",
+      "no-votes": "There are no votes."
+    },
+    "filter": {
+      "valid": "Valid",
+      "invalid": "Invalid",
+      "active": "All active",
+      "historical": "Historical",
+      "all": "All"
+    },
+    "text-status": {
+      "NFT is not owned by the seller account": "NFT is not owned by seller",
+      "Offer is expired": "Expired",
+      "Unable to verify balance of the buyer account": "Unable to verify balance of the buyer account",
+      "Insufficient funds on the buyer account": "The buyer does not have enough funds",
+      "Seller has no trustline for the token or it cannot be verified": "Seller has no trustline for the token or it can not be verified",
+      "NFT Issuer has no trustline for the token to accept royalty or it cannot be verified": "NFT Issuer has no trustline for the token to accept royalty or it cannot be verified",
+      "NFT is already belongs to the buyer": "NFT is already belongs to the buyer"
+    }
+  },
+  "tabs": {
+    "list": "List",
+    "tiles": "Tiles",
+    "secondary-sales": "Secondary",
+    "primary-sales": "Primary",
+    "primaryAndSecondary-sales": "All sales",
+    "all-time": "All time",
+    "year": "365 days",
+    "month": "30 days",
+    "week": "7 days",
+    "day": "24 hours",
+    "hour": "1 hour",
+    "currencies": "Currencies",
+    "issuers": "Issuers",
+    "marketplaces": "Marketplaces",
+    "brokers": "Brokers",
+    "charts": "Charts",
+    "collections": "Collections",
+    "image": "Image",
+    "video": "Video",
+    "audio": "Audio",
+    "model": "3D model",
+    "owned-offers": "Owned",
+    "offers-for-owned-nfts": "For owned NFTs",
+    "privately-offered-to-address": "Private (incoming)",
+    "all": "All",
+    "buy": "Buy",
+    "sell": "Sell",
+    "buyNow": "Buy now",
+    "publicAndKnownBrokers": "Public & MP",
+    "onSale": "On sale for {{nativeCurrency}}",
+    "all-tokens": "All tokens",
+    "native-currency-only": "{{nativeCurrency}} only",
+    "mintedNew": "Latest",
+    "mintedOld": "Oldest",
+    "existing": "Existing",
+    "burned": "Burned"
+  },
+  "xaman": {
+    "new-qr": "Get a new QR code"
+  },
+  "explorer": {
+    "header": {
+      "main": "{{explorerName}} Explorer",
+      "amm": "AMM pool information",
+      "object": "Object information",
+      "account": "Account information",
+      "transaction": "Transaction information",
+      "nft": "NFT",
+      "nfts": "NFTs",
+      "nft-offer": "NFT offer",
+      "nft-offers": "NFT offers",
+      "nft-volumes": "NFT sales volumes"
+    },
+    "enter-address": "Enter an address or a username",
+    "searching-tx-nft-nftoffer": "Searching for Tx / NFT ID / NFT Offer",
+    "searching-for-addresses": "Searching for addresses...",
+    "menu": {
+      "account": "Account",
+      "transactions": "Transactions",
+      "tokens": "Tokens"
+    },
+    "different-network": "This transaction is from the <1>{{networkNameOrId}}</1> network",
+    "check-tx-on-different-explorer": "check the details <2><0>here</0></2>.",
+    "not-supported-network": "which is not supported.",
+    "no-slashes": "The search should not contain slashes."
+  },
+  "nft-explorer": {
+    "header": "NFT explorer"
+  },
+  "nft-offers": {
+    "header": "NFT offers",
+    "owned-desc": "Here you can search for Buy and Sell Offers for NFTs, type in the address or username to view which NFT offers it has.",
+    "for-owned-nfts-desc": "Here you can search for Buy Offers for NFTs owned by account, type in the address or username to see received offers.",
+    "privately-offered-to-address-desc": "Here you can search for Offers privately created for an account (with destination), it is often used for NFT transfers (price 0), type in the address or username to see received offers.",
+    "no-nft-offers": "We couldn't find any NFT Offers.",
+    "cancel-invalid-offer_one": "Cancel the invalid offer",
+    "cancel-invalid-offer_other": "Cancel {{count}} invalid offers",
+    "cancel-expired-offer_one": "Cancel the expired offer",
+    "cancel-expired-offer_other": "Cancel {{count}} expired offers"
+  },
+  "nft-offer": {
+    "header": "NFT offer",
+    "desc": "Here you can search for NFT Offers, enter an Offer ID and press the search button.",
+    "enter-offer-id": "Enter an NFT offer ID",
+    "selling": "Selling",
+    "buying": "Buying"
+  },
+  "nfts": {
+    "header": "Account's NFTs",
+    "desc": "Here you can search for NFTs, type in a address to see what NFTs it owns.",
+    "search-by-name": "Search by NFT name",
+    "search-by-issuer": "Search by NFT issuer",
+    "search-by-taxon": "Search by NFT taxon",
+    "search-by-owner": "Search by NFT owner",
+    "search-by-buyer": "Search by NFT buyer",
+    "search-by-seller": "Search by NFT seller",
+    "no-nfts": "We couldn't find any NFTs with your search parameters.",
+    "on-service": "on {{service}}",
+    "amount-on-service": "{{amount}} on {{service}}",
+    "load-more": "We are looking for data on the ledger... please wait...",
+    "end": "Here are all the NFTs we could find."
+  },
+  "nft-sales": {
+    "header": "NFT sales",
+    "load-more": "We are looking for data on the XRPL... please wait...",
+    "end": "The end of the list."
+  },
+  "links": {
+    "active-offers-same-account": "View active offers from that account",
+    "nfts-same-issuer": "NFTs with the same issuer",
+    "owned-nfts-same-account": "NFTs owned by that account",
+    "all": "all",
+    "sold": "sold"
+  },
+  "donate": {
+    "help-us": "Help us in our mission to make the most user friendly XRPL explorer.",
+    "it-helps": "Your donation will help us to add capacity and continue to develop Bithomp.",
+    "address": "Our XRPL address for donations",
+    "donate-with-xaman": "Donate with Xaman"
+  },
+  "sponsored": {
+    "sponsored": "Sponsored"
+  }
+}

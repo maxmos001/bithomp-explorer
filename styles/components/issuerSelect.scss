@@ -1,0 +1,13 @@
+@use "select.scss";
+
+.issuer-select {
+  @include select.react-select;
+  max-width: 400px;
+  width: 100%;
+  display: inline-block;
+
+  .filters & {
+    display: block;
+    margin-top: 7px;
+  }
+}

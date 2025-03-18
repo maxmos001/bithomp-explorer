@@ -1,0 +1,5 @@
+@use "select.scss";
+
+.address-input {
+  @include select.react-select;
+}

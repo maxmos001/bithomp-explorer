@@ -1,0 +1,19 @@
+{
+  "table": {
+    "validator": "バリデータ",
+    "server-country": "サーバの国",
+    "server-location": "サーバの場所",
+    "cloud-private": "クラウド/プライベート",
+    "network-asn": "ネットワークASN",
+    "owner-country": "運用者の国",
+    "votes-for": "支持",
+    "last-seen": "最終更新",
+    "text": {
+      "domain-verified-toml": "検証済みドメイン(TOMLファイル)",
+      "unl": "Unique Node List (UNL)",
+      "negative-unl": "Negative UNL"
+    }
+  },
+  "domain-legacy": "ドメイン (古い検証方法)",
+  "text0": "バリデータリスト <1>{{url}}</1> はシーケンス {{sequence}} と、有効期限 {{expiration}} が設定されています。<br/>次の{{validatorCount}}バリデータを含んでいます。"
+}

@@ -1,0 +1,22 @@
+{
+  "desc": "Di sini Anda dapat mencari NFT, masukkan ID NFT dan tekan tombol pencarian.",
+  "enter-nft-id": "Masukkan ID NFT",
+  "holders": "Distribusi (Pemilik)",
+  "nft-id-decoded-data": "Data NFT ID yang telah diterjemahkan",
+  "nft-not-found-on-that-network": "NFT ini tidak ditemukan pada jaringan <1>{{network}}</1>.",
+  "table": {
+    "digest": "Digest",
+    "attention": "Perhatian",
+    "attention-texts": {
+      "no-uri": "NFT ini tidak memiliki URI, tidak kompatibel dengan standar umum.",
+      "no-metadata": "URI yang diberikan tidak menyertakan metadata NFT tersebut. Hal ini melanggar standar umum.",
+      "not-transferable": "NFT ini tidak dapat ditransfer; hanya dapat ditransfer kepada penerbit dan dari penerbit.",
+      "burnable": "Penerbit (atau entitas yang diizinkan oleh penerbit) dapat menghapus NFT ini.",
+      "no-digest": "Tidak ada Digest yang disediakan untuk NFT ini. Integritas NFT tidak dapat diverifikasi.",
+      "invalid-digest": "Pemeriksaan integritas NFT tidak berhasil. Digest tidak cocok dengan metadata NFT."
+    },
+    "warnings": {
+      "nft-crawler-delay": "Beberapa data sudah usang, pembaruan terakhir: {{lastUpdate}}. Server kami sedang mengejar, cek nanti untuk data yang lebih akurat."
+    }
+  }
+}
