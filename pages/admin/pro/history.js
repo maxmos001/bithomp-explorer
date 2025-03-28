@@ -60,40 +60,40 @@ const showFiat = (fiat, selectedCurrency) => {
 }
 
 const dateFormatters = {
-  Koinly: (timestamp) => {
+  koinly: (timestamp) => {
     // ISO format: YYYY-MM-DDTHH:MM:SS.000Z
     return new Date(timestamp * 1000).toISOString();
   },
-  CoinLedger: (timestamp) => {
+  coinLedger: (timestamp) => {
     // Format: MM/DD/YYYY HH:MM:SS in UTC
     const date = new Date(timestamp * 1000);
     return format(new Date(date.getTime() + date.getTimezoneOffset() * 60000), 'MM/dd/yyyy HH:mm:ss');
   },
-  TokenTax: (timestamp) => {
+  tokenTax: (timestamp) => {
     // Format: MM/DD/YY HH:MM
     const date = new Date(timestamp * 1000);
     return format(new Date(date.getTime() + date.getTimezoneOffset() * 60000), 'MM/dd/yy HH:mm');
   },
-  ZenLedger: (timestamp) => {
+  zenLedger: (timestamp) => {
     // Format: YYYY-MM-DD HH:MM:SS
     const date = new Date(timestamp * 1000);
     return format(new Date(date.getTime() + date.getTimezoneOffset() * 60000), 'yyyy-MM-dd HH:mm:ss');
   },
-  CoinTracking: (timestamp) => {
+  coinTracking: (timestamp) => {
     // Format: DD.MM.YYYY HH:MM:SS
     const date = new Date(timestamp * 1000);
     return format(new Date(date.getTime() + date.getTimezoneOffset() * 60000), 'dd.MM.yyyy HH:mm:ss');
   },
-  TaxBit: (timestamp) => {
+  taxBit: (timestamp) => {
     // Format: YYYY-MM-DDTHH:MM:SS.000Z (ISO string)
     return new Date(timestamp * 1000).toISOString();
   },
-  BlockPit: (timestamp) => {
+  blockPit: (timestamp) => {
     // Format: DD.MM.YYYY HH:MM:SS
     const date = new Date(timestamp * 1000);
     return format(new Date(date.getTime() + date.getTimezoneOffset() * 60000), 'dd.MM.yyyy HH:mm:ss');
   },
-  CryptoTax: (timestamp) => {
+  cryptoTax: (timestamp) => {
     // Format: YYYY-MM-DD HH:MM:SS
     const date = new Date(timestamp * 1000);
     return format(new Date(date.getTime() + date.getTimezoneOffset() * 60000), 'yyyy-MM-dd HH:mm:ss');
@@ -135,7 +135,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
 
   const platformCSVHeaders = [
     {
-      platform: 'Koinly',
+      platform: 'koinly',
       headers: [
         { label: 'Date', key: 'timestampExport' },
         { label: 'Sent Amount', key: 'sentAmount' },
@@ -151,7 +151,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         { label: 'TxHash', key: 'hash' }
       ]
     }, {
-      platform: 'CoinLedger',
+      platform: 'coinLedger',
       headers: [
         { label: 'Date (UTC)', key: 'timestampExport' },
         { label: 'Platform (Optional)', key: 'platform' },
@@ -166,7 +166,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         { label: 'TxHash (Optional)', key: 'hash' }
       ]
     }, {
-      platform: 'TokenTax',
+      platform: 'tokenTax',
       headers: [
         { label: 'Type', key: 'txType' },
         { label: 'BuyAmount', key: 'receivedAmount' },
@@ -181,7 +181,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         { label: 'Date', key: 'timestampExport' }
       ]
     }, {
-      platform: 'ZenLedger',
+      platform: 'zenLedger',
       headers: [
         { label: 'Timestamp', key: 'timestampExport' },
         { label: 'Type', key: 'txType' },
@@ -195,7 +195,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         { label: 'US Based', key: '' }
       ]
     }, {
-      platform: 'CoinTracking',
+      platform: 'coinTracking',
       headers: [
         { label: 'Type', key: 'txType' },
         { label: 'Buy Amount', key: 'receivedAmount' },
@@ -214,7 +214,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         { label: 'Liquidity pool', key: '' }
       ]
     }, {
-      platform: 'TaxBit',
+      platform: 'taxBit',
       headers: [
         { label: 'timestamp', key: 'timestampExport' },
         { label: 'txid', key: 'hash' },
@@ -238,7 +238,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         { label: 'status', key: 'status' }
       ]
     }, {
-      platform: 'BlockPit',
+      platform: 'blockPit',
       headers: [
         { label: 'Date (UTC)', key: 'timestampExport' },
         { label: 'Integration Name', key: 'platform' },
@@ -253,7 +253,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         { label: 'Trx. ID (optional)', key: 'hash' }
       ]
     }, {
-      platform: 'CryptoTax',
+      platform: 'cryptoTax',
       headers: [
         { label: 'Timestamp (UTC)', key: 'timestampExport' },
         { label: 'Type', key: 'txType' },
