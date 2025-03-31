@@ -1,11 +1,11 @@
-import axios from 'axios'
-import { sha512 } from 'crypto-hash'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'next-i18next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { getIsSsrMobile } from '../../utils/mobile'
+import { sha512 } from 'crypto-hash'
+import axios from 'axios'
 
 import { addAndRemoveQueryParams, encode, isIdValid, isValidJson, server, xahauNetwork } from '../../utils'
 
@@ -24,8 +24,8 @@ export const getServerSideProps = async (context) => {
   }
 }
 
-import SEO from '../../components/SEO'
 import CheckBox from '../../components/UI/CheckBox'
+import SEO from '../../components/SEO'
 import XRPLNftMint from './xrpl-nft-mint'
 
 let interval
@@ -108,8 +108,8 @@ export default function NftMint({ setSignRequest, uriQuery, digestQuery }) {
           setUpdate(true)
           setMetadataStatus(
             'Trying to load the metadata from URI... (' +
-              Math.ceil((Date.now() - startTime) / 1000 / 5) +
-              '/24 attempts)'
+            Math.ceil((Date.now() - startTime) / 1000 / 5) +
+            '/24 attempts)'
           )
         } else {
           setUpdate(false)
@@ -169,19 +169,6 @@ export default function NftMint({ setSignRequest, uriQuery, digestQuery }) {
           }
         }
       ]
-    }
-
-    if (!xahauNetwork) {
-      if (metadata && isValidJson(metadata)) {
-        const metadata = typeof metadata === 'string' ? JSON.parse(metadata) : metadata
-        request = {
-          ...metadata,
-          TransactionType: 'NFTokenMint'
-        }
-      } else {
-        setErrorMessage('Please enter valid JSON')
-        return
-      }
     }
 
     if (uri) {

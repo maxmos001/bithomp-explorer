@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import Select from 'react-select'
 import CheckBox from '../../components/UI/CheckBox'
-import { isValidJson } from '../../utils'
+import { encode, isValidJson, useLocalStorage } from '../../utils'
 import axios from 'axios'
 
 const removeEmptyFields = (data) => {
@@ -21,6 +21,8 @@ const removeEmptyFields = (data) => {
 }
 
 export default function XRPLNftMint({ setSignRequest }) {
+  const [account] = useLocalStorage('account')
+
   const [data, setData] = useState({
     transferFee: '',
     issuer: '',
@@ -111,18 +113,31 @@ export default function XRPLNftMint({ setSignRequest }) {
       setErrorMessage('Please agree to the Privacy policy')
       return
     }
-    let request = {
-      TransactionType: 'NFTokenMint',
-      Account: 'rDpV8WMExSYkqNA6BrnB247Ru4n1Yx9yAm',
-      Flags: 8,
-      NFTokenTaxon: 0,
-      TransferFee: 25000,
-      Fee: '10',
-      URI: 'ipfs://bafkreib7epidjjnbbtos6rtsd57oizuis7ztgzbf5t64ktkilk6n7me4vm'
+
+    if (!data.nftokenTaxon) {
+      setErrorMessage('Please enter a valid NFTokenTaxon')
+      return
     }
 
-    if (data.expiration) {
-      request.Expiration = Math.floor(data.expiration.getTime() / 1000)
+    // In docs it says that: Results in an error if the Amount field is not specified.
+    if (data.expiration && !data.amount) {
+      setErrorMessage('Expiration date is set but no amount is set')
+      return
+    }
+
+    setErrorMessage('')
+
+    let request = {
+      TransactionType: 'NFTokenMint',
+      TransferFee: data.transferFee ? parseFloat(data.transferFee) : '',
+      Issuer: data.issuer,
+      URI: encode(data.uri),
+      NFTokenTaxon: data.nftokenTaxon ? parseFloat(data.nftokenTaxon) : '',
+      Amount: data.amount ? `${parseFloat(data.amount) * 1000000}` : '',
+      Destination: data.destination,
+      Flags: data.flags.value,
+      Account: account.address,
+      Expiration: data.expiration ? Math.floor(data.expiration.getTime() / 1000) : null
     }
 
     setSignRequest({
@@ -229,7 +244,7 @@ export default function XRPLNftMint({ setSignRequest }) {
           <p>NFTokenTaxon:</p>
           <div className="input-validation">
             <input
-              placeholder="0.00001"
+              placeholder="0"
               className="input-text"
               spellCheck="false"
               maxLength="256"
@@ -245,7 +260,7 @@ export default function XRPLNftMint({ setSignRequest }) {
           <p>Amount (XRP):</p>
           <div className="input-validation">
             <input
-              placeholder="0.00001"
+              placeholder="12"
               className="input-text"
               spellCheck="false"
               maxLength="256"
@@ -341,7 +356,22 @@ export default function XRPLNftMint({ setSignRequest }) {
             Mint NFT
           </button>
         </p>
-
+        {minted && (
+          <>
+            The NFT was sucefully minted:
+            <br />
+            <Link href={'/nft/' + minted} className="brake">
+              {server}/nft/{minted}
+            </Link>
+            <br />
+            <br />
+            <center>
+              <button className="button-action" onClick={() => setMinted('')} name="mint-another-nft">
+                Mint another NFT
+              </button>
+            </center>
+          </>
+        )}
         <p className="red center" dangerouslySetInnerHTML={{ __html: errorMessage || '&nbsp;' }} />
       </div>
     </div>
