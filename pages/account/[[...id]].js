@@ -6,7 +6,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Image from 'next/image'
 import { axiosServer, passHeaders } from '../../utils/axios'
 
-import { devNet, xahauNetwork, avatarSrc } from '../../utils'
+import { devNet, xahauNetwork, avatarSrc, nativeCurrency } from '../../utils'
+import { shortNiceNumber } from '../../utils/format'
 import { getIsSsrMobile } from '../../utils/mobile'
 
 const RelatedLinks = dynamic(() => import('../../components/Account/RelatedLinks'), { ssr: false })
@@ -27,7 +28,7 @@ export async function getServerSideProps(context) {
         url:
           'v2/address/' +
           account +
-          '?username=true&service=true&verifiedDomain=true&parent=true&nickname=true&inception=true&flare=true&blacklist=true&payString=true&ledgerInfo=true&xamanMeta=true&bithomp=true' +
+          '?username=true&service=true&verifiedDomain=true&parent=true&nickname=true&inception=true&flare=true&blacklist=true&payString=true&ledgerInfo=true&xamanMeta=true&bithomp=true&obligations=true' +
           (ledgerTimestamp ? '&ledgerTimestamp=' + new Date(ledgerTimestamp).toISOString() : ''),
         headers: passHeaders(req)
       })
@@ -56,6 +57,8 @@ import AccountSummary from '../../components/Account/AccountSummary'
 import LedgerData from '../../components/Account/LedgerData'
 import PublicData from '../../components/Account/PublicData'
 import XamanData from '../../components/Account/XamanData'
+import ObjectsData from '../../components/Account/ObjectsData'
+import NftData from '../../components/Account/NftData'
 
 export default function Account({
   initialData,
@@ -68,6 +71,14 @@ export default function Account({
   fiatRate
 }) {
   const { t } = useTranslation()
+
+  /*
+  obligations: {
+    "trustlines": 44799,
+    "holders": 12131,
+    "tokens": 7
+  }
+  */
 
   const [data, setData] = useState({})
   const [loading, setLoading] = useState(false)
@@ -83,10 +94,26 @@ export default function Account({
   const [networkInfo, setNetworkInfo] = useState({})
   const [balances, setBalances] = useState({})
   const [shownOnSmall, setShownOnSmall] = useState(null)
+  const [objects, setObjects] = useState({})
+  //const [obligations, setObligations] = useState({})
+  const [gateway, setGateway] = useState(false)
 
   useEffect(() => {
     if (!initialData?.address) return
     setData(initialData)
+
+    if (initialData?.obligations) {
+      //setObligations(initialData.obligations)
+      if (initialData.obligations?.trustlines > 200) {
+        setGateway(true)
+      } else {
+        //keep it here for cases when address changes without refreshing the page
+        setGateway(false)
+      }
+    } else {
+      //keep it here for cases when address changes without refreshing the page
+      setGateway(false)
+    }
   }, [initialData])
 
   useEffect(() => {
@@ -192,7 +219,10 @@ export default function Account({
         title={
           t('explorer.header.account') +
           ' ' +
-          (initialData?.service?.name || initialData?.username || initialData?.address || id)
+          (initialData?.service?.name || initialData?.username || initialData?.address || id) +
+          (data?.ledgerInfo?.balance > 1000000
+            ? ' - ' + shortNiceNumber(data.ledgerInfo.balance / 1000000, 2, 0) + ' ' + nativeCurrency
+            : '')
         }
         description={
           'Account details, transactions, NFTs, Tokens for ' +
@@ -220,16 +250,18 @@ export default function Account({
                   <>
                     {data?.address && (
                       <>
-                        <div className="show-on-small-w800">
-                          <AccountSummary
-                            data={data}
-                            account={account}
-                            balances={balances}
-                            refreshPage={refreshPage}
-                            selectedCurrency={selectedCurrency}
-                            pageFiatRate={pageFiatRate}
-                          />
-                        </div>
+                        {!ledgerTimestamp && (
+                          <div className="show-on-small-w800">
+                            <AccountSummary
+                              data={data}
+                              account={account}
+                              balances={balances}
+                              refreshPage={refreshPage}
+                              selectedCurrency={selectedCurrency}
+                              pageFiatRate={pageFiatRate}
+                            />
+                          </div>
+                        )}
 
                         <div className="center show-on-small-w800 grey" style={{ marginTop: 10 }}>
                           {((!account?.address && !data?.service) || data?.address === account?.address) &&
@@ -247,8 +279,6 @@ export default function Account({
                                 |{' '}
                               </>
                             )}
-                          <a href={'/explorer/' + data.address}>Transactions</a> |{' '}
-                          <a href={'/explorer/' + data.address}>Tokens</a> |{' '}
                           <a
                             href="#"
                             onClick={(e) => {
@@ -451,17 +481,19 @@ export default function Account({
                           </table>
                         </div>
                         <div className="column-right">
-                          <div className="hide-on-small-w800">
-                            <AccountSummary
-                              data={data}
-                              account={account}
-                              balances={balances}
-                              refreshPage={refreshPage}
-                              selectedCurrency={selectedCurrency}
-                              pageFiatRate={pageFiatRate}
-                            />
-                            <br />
-                          </div>
+                          {!ledgerTimestamp && (
+                            <div className="hide-on-small-w800">
+                              <AccountSummary
+                                data={data}
+                                account={account}
+                                balances={balances}
+                                refreshPage={refreshPage}
+                                selectedCurrency={selectedCurrency}
+                                pageFiatRate={pageFiatRate}
+                              />
+                              <br />
+                            </div>
+                          )}
 
                           <LedgerData
                             data={data}
@@ -472,10 +504,29 @@ export default function Account({
                             networkInfo={networkInfo}
                             setSignRequest={setSignRequest}
                             fiatRate={fiatRate}
+                            objects={objects}
+                            gateway={gateway}
                           />
                           <PublicData data={data} />
+                          <NftData data={data} objects={objects} ledgerTimestamp={data?.ledgerInfo?.ledgerTimestamp} />
+                          {data?.ledgerInfo?.activated && !gateway && (
+                            <ObjectsData
+                              account={account}
+                              setSignRequest={setSignRequest}
+                              address={data?.address}
+                              setObjects={setObjects}
+                              ledgerTimestamp={data?.ledgerInfo?.ledgerTimestamp}
+                              selectedCurrency={selectedCurrency}
+                              pageFiatRate={pageFiatRate}
+                            />
+                          )}
                           <XamanData data={data} />
-                          <Did data={data} account={account} setSignRequest={setSignRequest} />
+                          <Did
+                            data={data}
+                            account={account}
+                            setSignRequest={setSignRequest}
+                            ledgerTimestamp={data?.ledgerInfo?.ledgerTimestamp}
+                          />
                           <RelatedLinks data={data} />
                         </div>
                       </>

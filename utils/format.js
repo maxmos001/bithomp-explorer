@@ -21,6 +21,17 @@ import CopyButton from '../components/UI/CopyButton'
 
 momentDurationFormatSetup(moment)
 
+export const NiceNativeBalance = ({ amount }) => {
+  return (
+    <span className="tooltip">
+      {shortNiceNumber(amount / 1000000, 2, 1) + ' ' + nativeCurrency}
+      <span className="tooltiptext no-brake">
+        {fullNiceNumber(amount / 1000000)} {nativeCurrency}
+      </span>
+    </span>
+  )
+}
+
 export const AddressWithIcon = ({ children, address }) => {
   let imageUrl = avatarServer + address
   if (!address) {
@@ -69,6 +80,10 @@ export const nativeCurrencyToFiat = (params) => {
     calculatedAmount = shortNiceNumber(amount.value * fiatRate, 2, 1, selectedCurrency)
   } else {
     calculatedAmount = shortNiceNumber((amount / 1000000) * fiatRate, 2, 1, selectedCurrency)
+  }
+
+  if (params.asText) {
+    return '≈' + calculatedAmount
   }
 
   return (
@@ -387,8 +402,11 @@ export const userOrServiceLink = (data, type, options = {}) => {
   if (!options.url) {
     options.url = '/account/'
   }
-  if (data[type + 'Details']) {
-    const { username, service } = data[type + 'Details']
+
+  const typeDetails = type.charAt(0).toLowerCase() + type.slice(1) + 'Details'
+
+  if (data[typeDetails]) {
+    const { username, service } = data[typeDetails]
     let link = username ? username : data[type]
     if (service) {
       let serviceName = service
@@ -540,11 +558,16 @@ export const amountFormat = (amount, options = {}) => {
   }
   const { value, currency, valuePrefix, issuer, type } = amountParced(amount)
 
+  let textCurrency = currency
+  if (options.noSpace) {
+    textCurrency = textCurrency?.trim()
+  }
+
   if (options.precise) {
     if (options.precise === 'nice') {
-      return niceNumber(value, 0, null, 15) + ' ' + valuePrefix + ' ' + currency
+      return niceNumber(value, 0, null, 15) + ' ' + valuePrefix + ' ' + textCurrency
     }
-    return value + ' ' + valuePrefix + ' ' + currency
+    return value + ' ' + valuePrefix + ' ' + textCurrency
   }
 
   let showValue = value
@@ -578,10 +601,6 @@ export const amountFormat = (amount, options = {}) => {
     )
   } else {
     //type: ['IOU', 'IOU demurraging', 'NFT']
-    let textCurrency = currency
-    if (options.noSpace) {
-      textCurrency = textCurrency?.trim()
-    }
     return showValue + ' ' + valuePrefix + ' ' + textCurrency
   }
 }
@@ -648,7 +667,7 @@ export const niceCurrency = (currency) => {
       currency = Buffer.from(currency, 'hex')
     }
   }
-  return currency
+  return currency.toString('utf8').replace(/\0/g, '') // remove padding nulls
 }
 
 export const amountParced = (amount) => {
@@ -782,8 +801,14 @@ export const timeOrDate = (timestamp) => {
     : dateFormat(timestamp)
 }
 
-export const expirationExpired = (t, timestamp) => {
-  return new Date(timestamp * 1000) < new Date() ? t('table.expired') : t('table.expiration')
+export const expirationExpired = (t, timestamp, type) => {
+  if (!timestamp.toString().includes('T')) {
+    if (type === 'ripple') {
+      timestamp += 946684800 //946684800 is the difference between Unix and Ripple timestamps
+    }
+    timestamp = timestamp * 1000
+  }
+  return new Date(timestamp) < new Date() ? t('table.expired') : t('table.expiration')
 }
 
 export const duration = (t, seconds, options) => {
@@ -886,7 +911,7 @@ export const shortNiceNumber = (n, smallNumberFractionDigits = 2, largeNumberFra
     output = niceNumber(n / 1000000, largeNumberFractionDigits, currency) + 'M'
     //} else if (n > 99999) {
     //output = niceNumber(Math.floor(n), 0, currency)
-  } else if (n > 9999) {
+  } else if (n > 999) {
     output = niceNumber(n / 1000, largeNumberFractionDigits, currency) + 'K'
   } else if (n === 0) {
     output = niceNumber(0, 0, currency)
@@ -931,6 +956,21 @@ export const codeHighlight = (json) => {
       }}
     />
   )
+}
+
+export const decodeJsonMemo = (memopiece, options) => {
+  if (options?.code === 'base64') {
+    try {
+      memopiece = atob(memopiece)
+    } catch (e) {
+      return memopiece
+    }
+  }
+  if (memopiece[0] === '{') {
+    memopiece = JSON.parse(memopiece)
+    return codeHighlight(memopiece)
+  }
+  return ''
 }
 
 export const showAmmPercents = (x) => {

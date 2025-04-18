@@ -1,3 +1,4 @@
+import React from 'react'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
@@ -12,7 +13,7 @@ import {
   timeFromNow,
   txIdLink
 } from '../../utils/format'
-import { devNet, getCoinsUrl, isDomainValid, nativeCurrency, stripDomain, xahauNetwork } from '../../utils'
+import { devNet, getCoinsUrl, isDomainValid, nativeCurrency, server, stripDomain, xahauNetwork } from '../../utils'
 
 import CopyButton from '../UI/CopyButton'
 import { LinkAmm } from '../../utils/links'
@@ -28,7 +29,9 @@ export default function LedgerData({
   pageFiatRate,
   networkInfo,
   setSignRequest,
-  fiatRate
+  fiatRate,
+  objects,
+  gateway
 }) {
   const { t, i18n } = useTranslation()
 
@@ -255,31 +258,13 @@ export default function LedgerData({
 
   const ammIdNode = <LinkAmm ammId={data.ledgerInfo.ammID} hash={true} icon={true} copy={true} />
 
-  const mintedNftsNode = (
-    <Link href={'/nft-explorer?includeWithoutMediaData=true&issuer=' + data?.address + '&includeBurned=true'}>
-      {data.ledgerInfo.mintedNFTokens}
-    </Link>
-  )
-
-  const burnedNftsNode = (
-    <Link
-      href={
-        '/nft-explorer?includeWithoutMediaData=true&issuer=' + data?.address + '&includeBurned=true&burnedPeriod=all'
-      }
-    >
-      {data.ledgerInfo.burnedNFTokens}
-    </Link>
-  )
-
-  const nftMinterNode = <AddressWithIconFilled data={data.ledgerInfo} name="nftokenMinter" />
-
   const transferRateNode = Math.ceil((data.ledgerInfo.transferRate - 1) * 10000) / 100
 
   const regularKeyNode = <AddressWithIconFilled data={data.ledgerInfo} name="regularKey" />
 
   const showLastEffectedTx =
-    data?.ledgerInfo?.blackholed ||
-    (data?.ledgerInfo?.previousTxnID && data?.ledgerInfo?.lastSubmittedTxHash !== data.ledgerInfo.previousTxnID)
+    data?.ledgerInfo?.previousTxnID &&
+    (data?.ledgerInfo?.blackholed || data?.ledgerInfo?.lastSubmittedTxHash !== data.ledgerInfo.previousTxnID)
 
   const lastEffectedTxNode = showLastEffectedTx && (
     <>
@@ -292,7 +277,7 @@ export default function LedgerData({
     </>
   )
 
-  const lastAccountTxNode = txIdLink(data.ledgerInfo.accountTxnID, 6)
+  //const lastAccountTxNode = txIdLink(data.ledgerInfo.accountTxnID, 6)
 
   const messageKeyNode = <code className="code-highlight">{data.ledgerInfo.messageKey}</code>
 
@@ -305,6 +290,48 @@ export default function LedgerData({
       {' '}
       (<Link href="/domains">verify</Link>)
     </>
+  )
+
+  const tokensNode = !objects?.rippleStateList ? (
+    'Loading...'
+  ) : objects?.rippleStateList?.length > 0 ? (
+    data?.ledgerInfo?.ledgerTimestamp ? (
+      <span className="orange bold">{objects?.rippleStateList?.length}</span>
+    ) : (
+      <a href={server + '/explorer/' + data.address} className="bold">
+        View tokens ({objects?.rippleStateList?.length})
+      </a>
+    )
+  ) : (
+    "This account doesn't hold Tokens."
+  )
+
+  const dexOrdersNode = !objects?.offerList ? (
+    'Loading...'
+  ) : objects?.offerList?.length > 0 ? (
+    data?.ledgerInfo?.ledgerTimestamp ? (
+      <span className="orange bold">{objects?.offerList?.length}</span>
+    ) : (
+      <a href={server + '/explorer/' + data.address} className="bold">
+        View orders ({objects?.offerList?.length})
+      </a>
+    )
+  ) : (
+    "This account doesn't have DEX orders."
+  )
+
+  const escrowNode = !objects?.escrowList ? (
+    'Loading...'
+  ) : objects?.escrowList?.length > 0 ? (
+    data?.ledgerInfo?.ledgerTimestamp ? (
+      <span className="orange bold">{objects?.escrowList?.length}</span>
+    ) : (
+      <a href={server + '/explorer/' + data.address} className="bold">
+        View Escrows ({objects?.escrowList?.length})
+      </a>
+    )
+  ) : (
+    "This account doesn't have Escrows."
   )
 
   return (
@@ -345,6 +372,22 @@ export default function LedgerData({
               <tr>
                 <td>Available balance</td>
                 <td>{availableBalanceNode}</td>
+              </tr>
+            </>
+          )}
+          {data?.ledgerInfo?.activated && !gateway && (
+            <>
+              <tr>
+                <td>{t('explorer.menu.tokens')}</td>
+                <td>{tokensNode}</td>
+              </tr>
+              <tr>
+                <td>DEX orders</td>
+                <td>{dexOrdersNode}</td>
+              </tr>
+              <tr>
+                <td>Escrows</td>
+                <td>{escrowNode}</td>
               </tr>
             </>
           )}
@@ -402,30 +445,6 @@ export default function LedgerData({
                   <td>{ammIdNode}</td>
                 </tr>
               )}
-              {data.ledgerInfo?.mintedNFTokens && (
-                <tr>
-                  <td>Minted NFTs</td>
-                  <td>{mintedNftsNode}</td>
-                </tr>
-              )}
-              {data.ledgerInfo?.burnedNFTokens && (
-                <tr>
-                  <td>Burned NFTs</td>
-                  <td>{burnedNftsNode}</td>
-                </tr>
-              )}
-              {data.ledgerInfo?.firstNFTokenSequence && (
-                <tr>
-                  <td>First NFT sequence</td>
-                  <td>{data.ledgerInfo.firstNFTokenSequence}</td>
-                </tr>
-              )}
-              {data.ledgerInfo?.nftokenMinter && (
-                <tr>
-                  <td>NFT minter</td>
-                  <td>{nftMinterNode}</td>
-                </tr>
-              )}
             </>
           )}
 
@@ -444,7 +463,7 @@ export default function LedgerData({
           {data.ledgerInfo?.ticketCount && (
             <tr>
               <td>Tickets</td>
-              <td className="bold">{data.ledgerInfo.ticketCount}</td>
+              <td>{data.ledgerInfo.ticketCount}</td>
             </tr>
           )}
           {data.ledgerInfo?.tickSize && (
@@ -520,12 +539,6 @@ export default function LedgerData({
               <td className="bold">enabled</td>
             </tr>
           )}
-          {data.ledgerInfo?.flags?.uriTokenIssuer && (
-            <tr>
-              <td>URI token issuer</td>
-              <td className="bold">true</td>
-            </tr>
-          )}
           {data.ledgerInfo?.flags?.disallowIncomingRemit && (
             <tr>
               <td>Incoming Remit</td>
@@ -556,12 +569,12 @@ export default function LedgerData({
               <td>{lastEffectedTxNode}</td>
             </tr>
           )}
-          {data.ledgerInfo?.accountTxnID && (
+          {/* data.ledgerInfo?.accountTxnID && (
             <tr>
-              <td>Last initiated tx:</td>
+              <td>Last initiated tx</td>
               <td>{lastAccountTxNode}</td>
             </tr>
-          )}
+          ) */}
           {data.ledgerInfo?.messageKey &&
             data.ledgerInfo?.messageKey.substring(0, 26) !== '02000000000000000000000000' && (
               <tr>
@@ -638,6 +651,24 @@ export default function LedgerData({
             </p>
           </>
         )}
+        {data?.ledgerInfo?.activated && (
+          <>
+            <p>
+              {objects?.rippleStateList?.length > 0 && (
+                <>
+                  <span className="grey">{t('explorer.menu.tokens')}</span>{' '}
+                </>
+              )}
+              {tokensNode}
+            </p>
+            <p>
+              {objects?.offerList?.length > 0 && <span className="grey">DEX orders</span>} {dexOrdersNode}
+            </p>
+            <p>
+              {objects?.escrowList?.length > 0 && <span className="grey">Escrows</span>} {escrowNode}
+            </p>
+          </>
+        )}
         {data.ledgerInfo?.domain && (
           <p>
             <span className="grey">Domain </span>
@@ -688,28 +719,6 @@ export default function LedgerData({
                 <span className="grey">AMM ID</span>
                 <br />
                 {ammIdNode}
-              </p>
-            )}
-            {data.ledgerInfo?.mintedNFTokens && (
-              <p>
-                <span className="grey">Minted NFTs</span> {mintedNftsNode}
-              </p>
-            )}
-            {data.ledgerInfo?.burnedNFTokens && (
-              <p>
-                <span className="grey">Burned NFTs</span> {burnedNftsNode}
-              </p>
-            )}
-            {data.ledgerInfo?.firstNFTokenSequence && (
-              <p>
-                <span className="grey">First NFT sequence</span> {data.ledgerInfo.firstNFTokenSequence}
-              </p>
-            )}
-            {data.ledgerInfo?.nftokenMinter && (
-              <p>
-                <span className="grey">NFT minter</span>
-                <br />
-                {nftMinterNode}
               </p>
             )}
           </>
@@ -790,11 +799,6 @@ export default function LedgerData({
             <span className="grey">Trustline clawback</span> <span className="bold">enabled</span>
           </p>
         )}
-        {data.ledgerInfo?.flags?.uriTokenIssuer && (
-          <p>
-            <span className="grey">URI token issuer</span> <span className="bold">true</span>
-          </p>
-        )}
         {data.ledgerInfo?.flags?.disallowIncomingRemit && (
           <p>
             <span className="grey">Incoming Remit</span> <span className="bold">disallowed</span>
@@ -822,13 +826,13 @@ export default function LedgerData({
             {lastEffectedTxNode}
           </p>
         )}
-        {data.ledgerInfo?.accountTxnID && (
+        {/* data.ledgerInfo?.accountTxnID && (
           <p>
             <span className="grey">Last initiated tx</span>
             <br />
             {lastAccountTxNode}
           </p>
-        )}
+        ) */}
         {data.ledgerInfo?.messageKey &&
           data.ledgerInfo?.messageKey.substring(0, 26) !== '02000000000000000000000000' && (
             <p>
@@ -864,12 +868,12 @@ export default function LedgerData({
               </p>
             )}
             {data.ledgerInfo.signerList.signerEntries.map((signer, index) => (
-              <p key={index}>
-                <span className="grey">Signer #{index + 1}</span>, weight: <b>{signer.signerWeight}</b>
-                <br />
-                <br />
+              <React.Fragment key={index}>
+                <p>
+                  <span className="grey">Signer #{index + 1}</span>, weight: <b>{signer.signerWeight}</b>
+                </p>
                 <AddressWithIconFilled data={signer} name="account" />
-              </p>
+              </React.Fragment>
             ))}
           </>
         )}
