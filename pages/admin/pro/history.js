@@ -81,17 +81,17 @@ const dateFormatters = {
   BlockPit: (timestamp) => {
     // Format: DD.MM.YYYY HH:MM:SS in UTC
     const date = new Date(timestamp * 1000)
-    
+
     const pad = (n) => n.toString().padStart(2, '0')
-    
+
     const dd = pad(date.getUTCDate())
     const mm = pad(date.getUTCMonth() + 1)
     const yyyy = date.getUTCFullYear()
-    
+
     const hh = pad(date.getUTCHours())
     const min = pad(date.getUTCMinutes())
     const ss = pad(date.getUTCSeconds())
-    
+
     return `${dd}.${mm}.${yyyy} ${hh}:${min}:${ss}`
   }
 }
@@ -370,9 +370,12 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         res.activities[i].coinLedgerTxType = res.activities[i].amountNumber > 0 ? 'Deposit' : 'Withdrawal'
 
         // For BlockPit platform
-        res.activities[i].blockPitTxType = res.activities[i].amountNumber > 0 
-          ? 'Deposit' 
-          : (Math.abs(res.activities[i].amountNumber) <= res.activities[i].txFeeNumber ? 'Fee' : 'Withdrawal')
+        res.activities[i].blockPitTxType =
+          res.activities[i].amountNumber > 0
+            ? 'Deposit'
+            : Math.abs(res.activities[i].amountNumber) <= res.activities[i].txFeeNumber
+            ? 'Fee'
+            : 'Withdrawal'
       }
       setData(res) // last request data
       if (options?.marker) {
@@ -578,8 +581,8 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
                     )?.headers || []
                   }
                   filename={'export ' + new Date().toISOString() + '.csv'}
-                  enclosingCharacter=''
                   className={'button-action' + (!(activities?.length > 0) ? ' disabled' : '')}
+                  uFEFF={platformCSVExport === 'BlockPit' ? false : undefined}
                 >
                   <DownloadIcon /> CSV for {platformCSVExport}
                 </CSVLink>
