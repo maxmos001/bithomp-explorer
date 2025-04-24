@@ -359,10 +359,10 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         res.activities[i].timestampExport = new Date(res.activities[i].timestamp * 1000).toISOString()
 
         res.activities[i].sentAmount = sending ? res.activities[i].amountNumber : ''
-        res.activities[i].sentCurrency = sending ? scvCurrency : ''
+        res.activities[i].sentCurrency = sending ? currency : ''
 
         res.activities[i].receivedAmount = !sending ? res.activities[i].amountNumber : ''
-        res.activities[i].receivedCurrency = !sending ? scvCurrency : ''
+        res.activities[i].receivedCurrency = !sending ? currency : ''
 
         // For Koinly platform
         res.activities[i].koinlySentCurrency = sending ? scvCurrency : ''
