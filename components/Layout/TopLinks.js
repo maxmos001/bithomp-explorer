@@ -1,11 +1,12 @@
 //import { useTranslation } from 'next-i18next'
 //import { useState, useEffect } from 'react'
-import { useWidth } from '../../utils' //network
+//import { network } from '../../utils'
+import { useIsMobile } from '../../utils/mobile'
 //import axios from 'axios'
 
 export default function TopLinks() {
   //const { t } = useTranslation()
-  const width = useWidth()
+  const isMobile = useIsMobile()
   //const [countryCode, setCountryCode] = useState('')
 
   //check country
@@ -39,7 +40,7 @@ export default function TopLinks() {
     return <div className="top-links">
       <span className='tooltip'>
         <a
-          href="https://xrplexplorer.com/go/exchange-m"
+          href="https://bithomp.com/go/exchange-m"
           target="_blank"
           rel="noreferrer"
           className='top-link orange'
@@ -64,7 +65,7 @@ export default function TopLinks() {
     <div className="top-links">
       <span className='tooltip'>
         <a
-          href="https://xrplexplorer.com/go/top-buy"
+          href="https://bithomp.com/go/top-buy"
           target="_blank"
           rel="noreferrer"
           className='top-link'
@@ -80,7 +81,7 @@ export default function TopLinks() {
 
       <span className='tooltip'>
         <a
-          href="https://xrplexplorer.com/go/top-exchange"
+          href="https://bithomp.com/go/top-exchange"
           target="_blank"
           rel="noreferrer"
           className='top-link'
@@ -96,7 +97,7 @@ export default function TopLinks() {
       
       <span className='tooltip'>
         <a
-          href="https://xrplexplorer.com/go/top-play"
+          href="https://bithomp.com/go/top-play"
           target="_blank"
           rel="noreferrer"
           className='top-link'
@@ -124,7 +125,7 @@ export default function TopLinks() {
           rel="noreferrer"
           className='top-link orange'
         >
-          {width > 590 ? "Play XRP - register with the promo code BITHOMP to boost up your bonus." : "Play XRP"}
+          {!isMobile ? "Play XRP - register with the promo code BITHOMP to boost up your bonus." : "Play XRP"}
         </a>
         <span className='tooltiptext right small'>
           {t("sponsored.sponsored")}
@@ -142,7 +143,7 @@ export default function TopLinks() {
           rel="noreferrer"
           className='top-link orange'
         >
-          {width > 590 ? "Play Now - Register with a promo code XAHAU and get 125% 1st dep welcome bonus!" : "Play Now"}
+          {!isMobile ? "Play Now - Register with a promo code XAHAU and get 125% 1st dep welcome bonus!" : "Play Now"}
         </a>
         <span className='tooltiptext right small'>
           {t("sponsored.sponsored")}
@@ -159,7 +160,7 @@ export default function TopLinks() {
       <span className="tooltip">
         💰
         <a href="/go/top-earn" target="_blank" rel="noreferrer" className="top-link orange">
-          {width > 590
+          {!isMobile
             ? 'Build your long-term wealth with industry-leading rates on XRP, BTC, and more.'
             : 'Earn up to 14%'}
         </a>

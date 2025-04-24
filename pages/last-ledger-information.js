@@ -93,7 +93,9 @@ export default function LastLedgerInformation() {
   }
 
   useEffect(() => {
-    connect()
+    if (navigator.onLine) {
+      connect()
+    }
     return () => {
       setLedger(null)
       setUpdate(false)
@@ -107,6 +109,12 @@ export default function LastLedgerInformation() {
     closedAt = ledger.validatedLedger.ledgerTime * 1000
     closedAt = new Date(closedAt).toLocaleTimeString()
   }
+
+  const totalBurned = xahauNetwork
+    ? ledger?.totalBurnedCoins
+    : ledger?.totalCoins
+    ? 100000000000000000 - ledger.totalCoins
+    : null
 
   return (
     <>
@@ -164,18 +172,28 @@ export default function LastLedgerInformation() {
           </p>
           <p>
             {t('last-ledger-information.total-supply') + ': '}
-            <span className="no-brake">
-              {niceNumber(ledger?.totalCoins && ledger.totalCoins / 1000000, 6) + ' ' + nativeCurrency}
-            </span>
-          </p>
-          {!xahauNetwork && (
-            <p>
-              {t('last-ledger-information.total-burned') + ': '}
+            {ledger?.totalCoins && (
               <span className="no-brake">
-                {niceNumber(ledger?.totalCoins && 100000000000 - ledger.totalCoins / 1000000, 6) + ' ' + nativeCurrency}
+                {niceNumber(ledger?.totalCoins && ledger.totalCoins / 1000000, 6) + ' ' + nativeCurrency}
               </span>
+            )}
+          </p>
+          {xahauNetwork && (
+            <p>
+              {t('last-ledger-information.burned-by-hooks') + ': '}
+              {ledger?.hooksBurnedCoins && (
+                <span className="no-brake">
+                  {niceNumber(ledger?.hooksBurnedCoins / 1000000, 6) + ' ' + nativeCurrency}
+                </span>
+              )}
             </p>
           )}
+          <p>
+            {t('last-ledger-information.total-burned') + ': '}
+            {totalBurned && (
+              <span className="no-brake">{niceNumber(totalBurned / 1000000, 6) + ' ' + nativeCurrency}</span>
+            )}
+          </p>
           <p className="center" style={{ position: 'absolute', top: 'calc(50% - 72px)', left: 'calc(50% - 54px)' }}>
             {!ledger && (
               <>
