@@ -156,9 +156,9 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         headers: [
           { label: 'Date', key: 'timestampExport' },
           { label: 'Sent Amount', key: 'sentAmount' },
-          { label: 'Sent Currency', key: 'sentCurrency' },
+          { label: 'Sent Currency', key: 'koinlySentCurrency' },
           { label: 'Received Amount', key: 'receivedAmount' },
-          { label: 'Received Currency', key: 'receivedCurrency' },
+          { label: 'Received Currency', key: 'koinlyReceivedCurrency' },
           { label: 'Fee Amount', key: 'txFeeNumber' },
           { label: 'Fee Currency', key: 'txFeeCurrencyCode' },
           { label: 'Net Worth Amount', key: 'amountInFiats.' + selectedCurrency },
