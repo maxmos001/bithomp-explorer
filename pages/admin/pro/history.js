@@ -83,6 +83,11 @@ const dateFormatters = {
     // Format: dd.mm.yyyy HH:MM:SS in UTC
     const { dd, mm, yyyy, hh, min, ss } = timePieces(timestamp)
     return `${dd}.${mm}.${yyyy} ${hh}:${min}:${ss}`
+  },
+  CryptoTax: (timestamp) => {
+    // Format: YYYY-MM-DD HH:mm:ss
+    const { yyyy, mm, dd, hh, min, ss } = timePieces(timestamp)
+    return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`
   }
 }
 
@@ -199,6 +204,26 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
           { label: 'Buy Value in Account Currency', key: 'amountInFiats.' + selectedCurrency },
           { label: 'Sell Value in Account Currency', key: '' },
           { label: 'Liquidity pool', key: '' }
+        ]
+      },
+      {
+        platform: 'CryptoTax',
+        headers: [
+          { label: 'Timestamp (UTC)', key: 'timestampExport' },
+          { label: 'Type', key: 'cryptoTaxTxType' },
+          { label: 'Base Currency', key: 'baseCurrency' },
+          { label: 'Base Amount', key: 'baseAmount' },
+          { label: 'Quote Currency (Optional)', key: '' },
+          { label: 'Quote Amount (Optional)', key: '' },
+          { label: 'Fee Currency (Optional)', key: 'cryptoTaxFeeCurrencyCode' },
+          { label: 'Fee Amount (Optional)', key: 'cryptoTaxFeeNumber' },
+          { label: 'From (Optional)', key: 'counterparty' },
+          { label: 'To (Optional)', key: 'address' },
+          { label: 'Blockchain (Optional)', key: '' },
+          { label: 'ID (Optional)', key: 'hash' },
+          { label: 'Description (Optional)', key: 'memo' },
+          { label: 'Reference Price Per Unit (Optional)', key: '' },
+          { label: 'Reference Price Currency (Optional)', key: '' }
         ]
       }
     ],
@@ -591,7 +616,8 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
                   optionsList={[
                     { value: 'Koinly', label: 'Koinly' },
                     { value: 'CoinLedger', label: 'CoinLedger' },
-                    { value: 'CoinTracking', label: 'CoinTracking' }
+                    { value: 'CoinTracking', label: 'CoinTracking' },
+                    { value: 'CryptoTax', label: 'CryptoTax' }
                   ]}
                 />
                 <button className="dropdown-btn" onClick={() => setSortMenuOpen(!sortMenuOpen)}>
