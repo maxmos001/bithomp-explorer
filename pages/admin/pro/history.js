@@ -291,7 +291,11 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
     */
     if (res) {
       for (let i = 0; i < res.activities.length; i++) {
-        let sending = res.activities[i].amountInFiats?.[selectedCurrency]?.[0] === '-'
+        let sending =
+          res.activities[i].amountInFiats?.[selectedCurrency] !== 0
+            ? res.activities[i].amountInFiats?.[selectedCurrency]?.[0] === '-'
+            : res.activities[i].amountNumber > 0
+
         res.activities[i].index = options?.marker ? activities.length + 1 + i : i + 1
         res.activities[i].amountExport = amountFormat(res.activities[i].amount)
         res.activities[i].amountNumber = res.activities[i].amount?.value || res.activities[i].amount / 1000000
@@ -339,7 +343,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         res.activities[i].memo = res.activities[i].memo?.replace(/"/g, "'") || ''
 
         // For CoinLedger platform
-        res.activities[i].coinLedgerTxType = res.activities[i].amountNumber > 0 ? 'Deposit' : 'Withdrawal'
+        res.activities[i].coinLedgerTxType = sending ? 'Withdrawal' : 'Deposit'
       }
       setData(res) // last request data
       if (options?.marker) {
