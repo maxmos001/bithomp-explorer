@@ -121,6 +121,12 @@ const processDataForExport = (activities, platform) => {
         : Math.abs(activity.amountNumber) <= activity.txFeeNumber
         ? 'Other Fee'
         : 'Deposit'
+    } else if (platform === 'CryptoTax') {
+      processedActivity.cryptoTaxTxType = !sending
+        ? 'buy'
+        : Math.abs(activity.amountNumber) <= activity.txFeeNumber
+        ? 'fee'
+        : 'sell'
     }
 
     return processedActivity
@@ -210,7 +216,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         platform: 'CryptoTax',
         headers: [
           { label: 'Timestamp (UTC)', key: 'timestampExport' },
-          { label: 'Type', key: 'cryptoTaxTxType' },
+          { label: 'Type', key: 'type' },
           { label: 'Base Currency', key: 'baseCurrency' },
           { label: 'Base Amount', key: 'baseAmount' },
           { label: 'Quote Currency (Optional)', key: '' },
@@ -401,17 +407,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         //sanitize memos for CSV
         res.activities[i].memo = res.activities[i].memo?.replace(/"/g, "'") || ''
 
-        // For CoinLedger platform
-        res.activities[i].coinLedgerTxType = res.activities[i].amountNumber > 0 ? 'Deposit' : 'Withdrawal'
-
         // For CryptoTax platform
-        res.activities[i].cryptoTaxTxType =
-          res.activities[i].amountNumber > 0
-            ? 'buy'
-            : Math.abs(res.activities[i].amountNumber) <= res.activities[i].txFeeNumber
-            ? 'fee'
-            : 'sell'
-
         res.activities[i].cryptoTaxFeeCurrencyCode = res.activities[i].txFeeCurrencyCode
         res.activities[i].cryptoTaxFeeNumber = res.activities[i].txFeeNumber
 
