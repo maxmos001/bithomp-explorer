@@ -114,9 +114,15 @@ const processDataForExport = (activities, platform) => {
         }
       }
     } else if (platform === 'CoinLedger') {
-      processedActivity.type = isSending(activity) ? 'Withdrawal' : 'Deposit'
+      processedActivity.type = sending ? 'Withdrawal' : 'Deposit'
     } else if (platform === 'CoinTracking') {
-      processedActivity.type = isSending(activity)
+      processedActivity.type = sending
+        ? 'Withdrawal'
+        : Math.abs(activity.amountNumber) <= activity.txFeeNumber
+        ? 'Other Fee'
+        : 'Deposit'
+    } else if (platform === 'BlockPit') {
+      processedActivity.type = sending
         ? 'Withdrawal'
         : Math.abs(activity.amountNumber) <= activity.txFeeNumber
         ? 'Other Fee'
@@ -157,9 +163,9 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         headers: [
           { label: 'Date', key: 'timestampExport' },
           { label: 'Sent Amount', key: 'sentAmount' },
-          { label: 'Sent Currency', key: 'koinlySentCurrency' },
+          { label: 'Sent Currency', key: 'sentCurrency' },
           { label: 'Received Amount', key: 'receivedAmount' },
-          { label: 'Received Currency', key: 'koinlyReceivedCurrency' },
+          { label: 'Received Currency', key: 'receivedCurrency' },
           { label: 'Fee Amount', key: 'txFeeNumber' },
           { label: 'Fee Currency', key: 'txFeeCurrencyCode' },
           { label: 'Net Worth Amount', key: 'amountInFiats.' + selectedCurrency },
@@ -396,16 +402,6 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
 
         //sanitize memos for CSV
         res.activities[i].memo = res.activities[i].memo?.replace(/"/g, "'") || ''
-
-        // For CoinLedger platform
-        res.activities[i].coinLedgerTxType = res.activities[i].amountNumber > 0 ? 'Deposit' : 'Withdrawal'
-
-        // For BlockPit platform
-        res.activities[i].blockPitTxType = !sending
-          ? 'Deposit'
-          : Math.abs(res.activities[i].amountNumber) <= res.activities[i].txFeeNumber
-          ? 'Fee'
-          : 'Withdrawal'
       }
       setData(res) // last request data
       if (options?.marker) {
