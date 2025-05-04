@@ -83,6 +83,11 @@ const dateFormatters = {
     // Format: dd.mm.yyyy HH:MM:SS in UTC
     const { dd, mm, yyyy, hh, min, ss } = timePieces(timestamp)
     return `${dd}.${mm}.${yyyy} ${hh}:${min}:${ss}`
+  },
+  ZenLedger: (timestamp) => {
+    // Format: mm/dd/yyyy hh:mm:ss in UTC
+    const { mm, dd, yyyy, hh, min, ss } = timePieces(timestamp)
+    return `${mm}/${dd}/${yyyy} ${hh}:${min}:${ss}`
   }
 }
 
@@ -93,12 +98,14 @@ const isSending = (a) => {
   return a.amount[0] === '-'
 }
 
-const processDataForExport = (activities, platform) => {
+const processDataForExport = ({ activities, platform, selectedCurrency }) => {
   return activities.map((activity) => {
     const sending = isSending(activity)
 
     const processedActivity = { ...activity }
+
     processedActivity.timestampExport = dateFormatters[platform](activity.timestamp)
+
     if (platform === 'Koinly') {
       if (activity.amount?.issuer) {
         let koinlyId =
@@ -109,13 +116,33 @@ const processDataForExport = (activities, platform) => {
         }
       }
     } else if (platform === 'CoinLedger') {
-      processedActivity.type = isSending(activity) ? 'Withdrawal' : 'Deposit'
+      processedActivity.type = sending ? 'Withdrawal' : 'Deposit'
     } else if (platform === 'CoinTracking') {
-      processedActivity.type = isSending(activity)
+      processedActivity.type = sending
         ? 'Withdrawal'
         : Math.abs(activity.amountNumber) <= activity.txFeeNumber
         ? 'Other Fee'
         : 'Deposit'
+    } else if (platform === 'ZenLedger') {
+      if (activity.amountNumber > 0) {
+        processedActivity.type = 'Receive'
+        processedActivity.receivedAmount = activity.amountNumber
+        processedActivity.receivedCurrency = activity.receivedCurrency
+
+        // USD Value
+        processedActivity.sentAmount =
+          activity.amountInFiats?.[selectedCurrency] > 0 ? activity.amountInFiats?.[selectedCurrency] : ''
+        processedActivity.sentCurrency = selectedCurrency
+      } else {
+        processedActivity.type = Math.abs(activity.amountNumber) <= activity.txFeeNumber ? 'Fee' : 'Send'
+        processedActivity.sentAmount = activity.amountNumber
+        processedActivity.sentCurrency = activity.currencyCode
+
+        // USD Value
+        processedActivity.receivedAmount =
+          activity.amountInFiats?.[selectedCurrency] > 0 ? activity.amountInFiats?.[selectedCurrency] : ''
+        processedActivity.receivedCurrency = selectedCurrency
+      }
     }
 
     return processedActivity
@@ -152,9 +179,9 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         headers: [
           { label: 'Date', key: 'timestampExport' },
           { label: 'Sent Amount', key: 'sentAmount' },
-          { label: 'Sent Currency', key: 'koinlySentCurrency' },
+          { label: 'Sent Currency', key: 'sentCurrency' },
           { label: 'Received Amount', key: 'receivedAmount' },
-          { label: 'Received Currency', key: 'koinlyReceivedCurrency' },
+          { label: 'Received Currency', key: 'receivedCurrency' },
           { label: 'Fee Amount', key: 'txFeeNumber' },
           { label: 'Fee Currency', key: 'txFeeCurrencyCode' },
           { label: 'Net Worth Amount', key: 'amountInFiats.' + selectedCurrency },
@@ -199,6 +226,21 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
           { label: 'Buy Value in Account Currency', key: 'amountInFiats.' + selectedCurrency },
           { label: 'Sell Value in Account Currency', key: '' },
           { label: 'Liquidity pool', key: '' }
+        ]
+      },
+      {
+        platform: 'ZenLedger',
+        headers: [
+          { label: 'Timestamp', key: 'timestampExport' },
+          { label: 'Type', key: 'type' },
+          { label: 'IN Amount', key: 'receivedAmount' },
+          { label: 'IN Currency', key: 'receivedCurrency' },
+          { label: 'Out Amount', key: 'sentAmount' },
+          { label: 'Out Currency', key: 'sentCurrency' },
+          { label: 'Fee Amount', key: 'txFeeNumber' },
+          { label: 'Fee Currency', key: 'txFeeCurrencyCode' },
+          { label: 'Exchange(optional)', key: 'platform' },
+          { label: 'US Based', key: '' }
         ]
       }
     ],
@@ -375,31 +417,6 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
 
         //sanitize memos for CSV
         res.activities[i].memo = res.activities[i].memo?.replace(/"/g, "'") || ''
-        // For ZenLedger platform
-        if (res.activities[i].amountNumber > 0) {
-          res.activities[i].zenLedgerTxType = 'Receive'
-          res.activities[i].zenLedgerReceivedAmount = res.activities[i].amountNumber
-          res.activities[i].zenLedgerReceivedCurrency = res.activities[i].receivedCurrency
-
-          // USD Value
-          res.activities[i].zenLedgerSentAmount =
-            res.activities[i].amountInFiats?.[selectedCurrency] > 0
-              ? res.activities[i].amountInFiats?.[selectedCurrency]
-              : ''
-          res.activities[i].zenLedgerSentCurrency = selectedCurrency
-        } else {
-          res.activities[i].zenLedgerTxType =
-            Math.abs(res.activities[i].amountNumber) <= res.activities[i].txFeeNumber ? 'Fee' : 'Send'
-          res.activities[i].zenLedgerSentAmount = res.activities[i].amountNumber
-          res.activities[i].zenLedgerSentCurrency = res.activities[i].currencyCode
-
-          // USD Value
-          res.activities[i].zenLedgerReceivedAmount =
-            res.activities[i].amountInFiats?.[selectedCurrency] > 0
-              ? res.activities[i].amountInFiats?.[selectedCurrency]
-              : ''
-          res.activities[i].zenLedgerReceivedCurrency = selectedCurrency
-        }
       }
       setData(res) // last request data
       if (options?.marker) {
@@ -599,7 +616,11 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
               </div>
               {rendered && (
                 <CSVLink
-                  data={processDataForExport(filteredActivities || [], platformCSVExport)}
+                  data={processDataForExport({
+                    activities: filteredActivities || [],
+                    platform: platformCSVExport,
+                    selectedCurrency
+                  })}
                   headers={
                     platformCSVHeaders.find(
                       (header) => header.platform.toLowerCase() === platformCSVExport.toLowerCase()
