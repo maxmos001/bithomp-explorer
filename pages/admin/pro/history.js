@@ -83,6 +83,11 @@ const dateFormatters = {
     // Format: dd.mm.yyyy HH:MM:SS in UTC
     const { dd, mm, yyyy, hh, min, ss } = timePieces(timestamp)
     return `${dd}.${mm}.${yyyy} ${hh}:${min}:${ss}`
+  },
+  BlockPit: (timestamp) => {
+    // Format: DD.MM.YYYY HH:MM:SS in UTC
+    const { dd, mm, yyyy, hh, min, ss } = timePieces(timestamp)
+    return `${dd}.${mm}.${yyyy} ${hh}:${min}:${ss}`
   }
 }
 
@@ -199,6 +204,22 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
           { label: 'Buy Value in Account Currency', key: 'amountInFiats.' + selectedCurrency },
           { label: 'Sell Value in Account Currency', key: '' },
           { label: 'Liquidity pool', key: '' }
+        ]
+      },
+      {
+        platform: 'BlockPit',
+        headers: [
+          { label: 'Date (UTC)', key: 'timestampExport' },
+          { label: 'Integration Name', key: 'platform' },
+          { label: 'Label', key: 'blockPitTxType' },
+          { label: 'Outgoing Asset', key: 'sentCurrency' },
+          { label: 'Outgoing Amount', key: 'sentAmount' },
+          { label: 'Incoming Asset', key: 'receivedCurrency' },
+          { label: 'Incoming Amount', key: 'receivedAmount' },
+          { label: 'Fee Asset (optional)', key: 'txFeeCurrencyCode' },
+          { label: 'Fee Amount (optional)', key: 'txFeeNumber' },
+          { label: 'Comment (optional)', key: 'memo' },
+          { label: 'Trx. ID (optional)', key: 'hash' }
         ]
       }
     ],
@@ -380,12 +401,11 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         res.activities[i].coinLedgerTxType = res.activities[i].amountNumber > 0 ? 'Deposit' : 'Withdrawal'
 
         // For BlockPit platform
-        res.activities[i].blockPitTxType =
-          res.activities[i].amountNumber > 0
-            ? 'Deposit'
-            : Math.abs(res.activities[i].amountNumber) <= res.activities[i].txFeeNumber
-            ? 'Fee'
-            : 'Withdrawal'
+        res.activities[i].blockPitTxType = !sending
+          ? 'Deposit'
+          : Math.abs(res.activities[i].amountNumber) <= res.activities[i].txFeeNumber
+          ? 'Fee'
+          : 'Withdrawal'
       }
       setData(res) // last request data
       if (options?.marker) {
