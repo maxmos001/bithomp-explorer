@@ -217,7 +217,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         headers: [
           { label: 'Date (UTC)', key: 'timestampExport' },
           { label: 'Integration Name', key: 'platform' },
-          { label: 'Label', key: 'blockPitTxType' },
+          { label: 'Label', key: 'type' },
           { label: 'Outgoing Asset', key: 'sentCurrency' },
           { label: 'Outgoing Amount', key: 'sentAmount' },
           { label: 'Incoming Asset', key: 'receivedCurrency' },
