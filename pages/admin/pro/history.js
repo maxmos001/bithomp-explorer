@@ -122,11 +122,27 @@ const processDataForExport = (activities, platform) => {
         ? 'Other Fee'
         : 'Deposit'
     } else if (platform === 'CryptoTax') {
-      processedActivity.cryptoTaxTxType = !sending
+      processedActivity.type = !sending
         ? 'buy'
         : Math.abs(activity.amountNumber) <= activity.txFeeNumber
         ? 'fee'
         : 'sell'
+
+      processedActivity.cryptoTaxFeeCurrencyCode = processedActivity.txFeeCurrencyCode
+      processedActivity.cryptoTaxFeeNumber = processedActivity.txFeeNumber
+
+      if (processedActivity.type === 'buy') {
+        processedActivity.baseCurrency = processedActivity.receivedCurrency
+        processedActivity.baseAmount = processedActivity.receivedAmount
+      } else {
+        processedActivity.baseCurrency = processedActivity.sentCurrency
+        processedActivity.baseAmount = processedActivity.sentAmount
+        // don't include this fee amount in the fee column for type 'fee'
+        if (processedActivity.type === 'fee') {
+          processedActivity.cryptoTaxFeeCurrencyCode = ''
+          processedActivity.cryptoTaxFeeNumber = ''
+        }
+      }
     }
 
     return processedActivity
@@ -406,23 +422,6 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
 
         //sanitize memos for CSV
         res.activities[i].memo = res.activities[i].memo?.replace(/"/g, "'") || ''
-
-        // For CryptoTax platform
-        res.activities[i].cryptoTaxFeeCurrencyCode = res.activities[i].txFeeCurrencyCode
-        res.activities[i].cryptoTaxFeeNumber = res.activities[i].txFeeNumber
-
-        if (res.activities[i].cryptoTaxTxType === 'buy') {
-          res.activities[i].baseCurrency = res.activities[i].receivedCurrency
-          res.activities[i].baseAmount = res.activities[i].receivedAmount
-        } else {
-          res.activities[i].baseCurrency = res.activities[i].sentCurrency
-          res.activities[i].baseAmount = res.activities[i].sentAmount
-          // don't include this fee amount in the fee column for type 'fee'
-          if (res.activities[i].cryptoTaxTxType === 'fee') {
-            res.activities[i].cryptoTaxFeeCurrencyCode = ''
-            res.activities[i].cryptoTaxFeeNumber = ''
-          }
-        }
       }
       setData(res) // last request data
       if (options?.marker) {
