@@ -138,6 +138,12 @@ const processDataForExport = (activities, platform) => {
       processedActivity.type = sending ? 'Sell' : 'Buy'
     } else if (platform === 'TokenTax') {
       processedActivity.type = sending ? 'Withdrawal' : 'Deposit'
+    } else if (platform === 'BlockPit') {
+      processedActivity.type = sending
+        ? 'Withdrawal'
+        : Math.abs(activity.amountNumber) <= activity.txFeeNumber
+        ? 'Other Fee'
+        : 'Deposit'
     }
 
     return processedActivity
