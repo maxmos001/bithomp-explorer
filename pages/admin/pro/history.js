@@ -142,8 +142,17 @@ const processDataForExport = (activities, platform) => {
       processedActivity.type = sending
         ? 'Withdrawal'
         : Math.abs(activity.amountNumber) <= activity.txFeeNumber
-        ? 'Other Fee'
+        ? 'Fee'
         : 'Deposit'
+      // don't include this fee amount in the fee column for type 'fee'
+      if (processedActivity.type === 'Fee') {
+        processedActivity.sentAmount = processedActivity.txFeeNumber
+        processedActivity.sentCurrency = processedActivity.txFeeCurrencyCode
+        processedActivity.txFeeCurrencyCode = ''
+        processedActivity.txFeeNumber = ''
+        processedActivity.receivedAmount = ''
+        processedActivity.receivedCurrency = ''
+      }
     }
 
     return processedActivity
