@@ -17,7 +17,7 @@ import {
   shortHash,
   timeFromNow
 } from '../../utils/format'
-import { decode, server, xahauNetwork } from '../../utils'
+import { server, xahauNetwork } from '../../utils'
 import { dappBySourceTag, errorCodeDescription, shortErrorCode } from '../../utils/transaction'
 import { add } from '../../utils/calc'
 
@@ -59,8 +59,6 @@ export const TransactionCard = ({
   const [showAdditionalData, setShowAdditionalData] = useState(false)
 
   if (!data) return null
-
-  //console.log('TransactionCard', data) //delete
 
   const { id, error_message, tx, outcome, meta, specification, error } = data
   const isSuccessful = outcome?.result == 'tesSUCCESS'
@@ -248,10 +246,10 @@ export const TransactionCard = ({
                       <span className="bold">{txTypeSpecial || tx.TransactionType}</span>
                     </TData>
                   </tr>
-                  {meta?.HookExecutions?.map((hr, i) => (
+                  {outcome?.hooksExecutions?.map((hr, i) => (
                     <tr key={i}>
-                      <TData>Hook return {meta?.HookExecutions.length > 1 ? i + 1 : ''}:</TData>
-                      <TData className="orange bold">{decode(hr.HookExecution?.HookReturnString)}</TData>
+                      <TData>Hook return{outcome?.hooksExecutions.length > 1 ? ' ' + (i + 1) : ''}</TData>
+                      <TData className="orange bold">{hr.returnString}</TData>
                     </tr>
                   ))}
                   {!isSuccessful && (
@@ -291,7 +289,19 @@ export const TransactionCard = ({
                         <tr key={i}>
                           <TData>Emitted TX {outcome?.emittedTxns?.length > 1 ? i + 1 : ''}</TData>
                           <TData>
-                            <LinkTx tx={etx?.id} />
+                            {etx?.tx?.TransactionType}{' '}
+                            {etx?.tx?.TransactionType === 'Payment' && (
+                              <>
+                                [<span className="bold">{amountFormat(etx?.tx?.Amount, { noSpace: true })} </span>
+                                {nativeCurrencyToFiat({
+                                  amount: etx?.tx?.Amount,
+                                  selectedCurrency,
+                                  fiatRate: pageFiatRate
+                                })}{' '}
+                                ]{' '}
+                              </>
+                            )}
+                            <LinkTx tx={etx?.txHash} icon={true} />
                           </TData>
                         </tr>
                       ))}
@@ -448,18 +458,26 @@ export const TransactionCard = ({
                           <TData>{tx.SetFlag}</TData>
                         </tr>
                       )}
+                      {tx.Flags !== undefined && (
+                        <tr>
+                          <TData tooltip="Set of bit-flags for this transaction (UInt32)">Flags value</TData>
+                          <TData>{tx.Flags}</TData>
+                        </tr>
+                      )}
                       {tx?.TransactionType !== 'UNLReport' && (
                         <>
                           {tx.TicketSequence ? (
                             <tr>
-                              <TData>
+                              <TData tooltip="The sequence number of the ticket to use in place of a Sequence number.">
                                 <span className="bold">Ticket</span> sequence
                               </TData>
                               <TData>#{tx.TicketSequence}</TData>
                             </tr>
                           ) : (
                             <tr>
-                              <TData>Sequence</TData>
+                              <TData tooltip="The sequence number of the account sending the transaction.">
+                                Sequence
+                              </TData>
                               <TData>#{tx.Sequence}</TData>
                             </tr>
                           )}
