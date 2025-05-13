@@ -31,6 +31,7 @@ import { koinly } from '../../../utils/koinly'
 import { TbArrowsSort } from 'react-icons/tb'
 import SimpleSelect from '../../../components/UI/SimpleSelect'
 import { LinkTx } from '../../../utils/links'
+import { IoMdClose } from 'react-icons/io'
 export const getServerSideProps = async (context) => {
   const { locale, query } = context
   const { address } = query
@@ -84,6 +85,15 @@ const dateFormatters = {
     const { dd, mm, yyyy, hh, min, ss } = timePieces(timestamp)
     return `${dd}.${mm}.${yyyy} ${hh}:${min}:${ss}`
   },
+  TaxBit: (timestamp) => {
+    // ISO format: YYYY-MM-DDTHH:MM:SS.000Z (same as Koinly)
+    return new Date(timestamp * 1000).toISOString()
+  },
+  TokenTax: (timestamp) => {
+    // Format: MM/DD/YY HH:MM
+    const { mm, dd, yyyy, hh, min } = timePieces(timestamp)
+    return `${mm}/${dd}/${yyyy} ${hh}:${min}`
+  },
   ZenLedger: (timestamp) => {
     // Format: mm/dd/yyyy hh:mm:ss in UTC
     const { mm, dd, yyyy, hh, min, ss } = timePieces(timestamp)
@@ -116,6 +126,10 @@ const processDataForExport = ({ activities, platform, selectedCurrency }) => {
         }
       }
     } else if (platform === 'CoinLedger') {
+      // https://help.coinledger.io/en/articles/6028758-universal-manual-import-template-guide
+      // Deposit and Withdrawals are a non-taxable self-transfers
+      // Trades need to be in one line as Trade type.
+      // NFTs should be as Trades too
       processedActivity.type = sending ? 'Withdrawal' : 'Deposit'
     } else if (platform === 'CoinTracking') {
       processedActivity.type = sending
@@ -123,6 +137,10 @@ const processDataForExport = ({ activities, platform, selectedCurrency }) => {
         : Math.abs(activity.amountNumber) <= activity.txFeeNumber
         ? 'Other Fee'
         : 'Deposit'
+    } else if (platform === 'TaxBit') {
+      processedActivity.type = sending ? 'Sell' : 'Buy'
+    } else if (platform === 'TokenTax') {
+      processedActivity.type = sending ? 'Withdrawal' : 'Deposit'
     } else if (platform === 'ZenLedger') {
       if (activity.amountNumber > 0) {
         processedActivity.type = 'Receive'
@@ -149,6 +167,14 @@ const processDataForExport = ({ activities, platform, selectedCurrency }) => {
   })
 }
 
+const platformList = [
+  { value: 'Koinly', label: 'Koinly' },
+  { value: 'CoinLedger', label: 'CoinLedger' },
+  { value: 'CoinTracking', label: 'CoinTracking' },
+  { value: 'TaxBit', label: 'TaxBit' },
+  { value: 'TokenTax', label: 'TokenTax' }
+]
+
 export default function History({ queryAddress, selectedCurrency, setSelectedCurrency }) {
   const router = useRouter()
   const width = useWidth()
@@ -171,6 +197,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
   const [removeDust, setRemoveDust] = useState(false)
   const [filteredActivities, setFilteredActivities] = useState([])
   const [platformCSVExport, setPlatformCSVExport] = useState('Koinly')
+  const [exportCsvMenuOpen, setExportCsvMenuOpen] = useState(false)
 
   const platformCSVHeaders = useMemo(
     () => [
@@ -195,16 +222,16 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         platform: 'CoinLedger',
         headers: [
           { label: 'Date (UTC)', key: 'timestampExport' },
-          { label: 'Platform (Optional)', key: 'platform' },
+          { label: 'Platform', key: 'platform' },
           { label: 'Asset Sent', key: 'sentCurrency' },
           { label: 'Amount Sent', key: 'sentAmount' },
           { label: 'Asset Received', key: 'receivedCurrency' },
           { label: 'Amount Received', key: 'receivedAmount' },
-          { label: 'Fee Currency (Optional)', key: 'txFeeCurrencyCode' },
-          { label: 'Fee Amount (Optional)', key: 'txFeeNumber' },
+          { label: 'Fee Currency', key: 'txFeeCurrencyCode' },
+          { label: 'Fee Amount', key: 'txFeeNumber' },
           { label: 'Type', key: 'type' },
-          { label: 'Description (Optional)', key: 'memo' },
-          { label: 'TxHash (Optional)', key: 'hash' }
+          { label: 'Description', key: 'memo' },
+          { label: 'TxHash', key: 'hash' }
         ]
       },
       {
@@ -226,6 +253,47 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
           { label: 'Buy Value in Account Currency', key: 'amountInFiats.' + selectedCurrency },
           { label: 'Sell Value in Account Currency', key: '' },
           { label: 'Liquidity pool', key: '' }
+        ]
+      },
+      {
+        platform: 'TaxBit',
+        headers: [
+          { label: 'timestamp', key: 'timestampExport' },
+          { label: 'txid', key: 'hash' },
+          { label: 'source_name', key: '' },
+          { label: 'from_wallet_address', key: 'counterparty' },
+          { label: 'to_wallet_address', key: 'address' },
+          { label: 'category', key: 'type' },
+          { label: 'in_currency', key: 'receivedCurrency' },
+          { label: 'in_amount', key: 'receivedAmount' },
+          { label: 'in_currency_fiat', key: 'netWorthCurrency' },
+          { label: 'in_amount_fiat', key: 'amountInFiats.' + selectedCurrency },
+          { label: 'out_currency', key: 'sentCurrency' },
+          { label: 'out_amount', key: 'sentAmount' },
+          { label: 'out_currency_fiat', key: 'netWorthCurrency' },
+          { label: 'out_amount_fiat', key: 'amountInFiats.' + selectedCurrency },
+          { label: 'fee_currency', key: 'txFeeCurrencyCode' },
+          { label: 'fee', key: 'txFeeNumber' },
+          { label: 'fee_currency_fiat', key: selectedCurrency },
+          { label: 'fee_fiat', key: 'txFeeInFiats.' + selectedCurrency },
+          { label: 'memo', key: 'memo' },
+          { label: 'status', key: '' }
+        ]
+      },
+      {
+        platform: 'TokenTax',
+        headers: [
+          { label: 'Type', key: 'type' },
+          { label: 'BuyAmount', key: 'receivedAmount' },
+          { label: 'BuyCurrency', key: 'receivedCurrency' },
+          { label: 'SellAmount', key: 'sentAmount' },
+          { label: 'SellCurrency', key: 'sentCurrency' },
+          { label: 'FeeAmount', key: 'txFeeNumber' },
+          { label: 'FeeCurrency', key: 'txFeeCurrencyCode' },
+          { label: 'Exchange', key: 'platform' },
+          { label: 'Group', key: '' },
+          { label: 'Comment', key: 'memo' },
+          { label: 'Date', key: 'timestampExport' }
         ]
       },
       {
@@ -491,7 +559,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
   return (
     <>
       <SEO title="My addresses: history" />
-      <div className="page-pro-history">
+      <div className={`page-pro-history ${exportCsvMenuOpen ? 'is-sort-menu-open' : ''}`}>
         <h1 className="center">Pro address balances history</h1>
 
         <AdminTabs name="mainTabs" tab="pro" />
@@ -600,17 +668,8 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
                   marginBottom: 20
                 }}
               >
-                <SimpleSelect
-                  value={platformCSVExport}
-                  setValue={setPlatformCSVExport}
-                  optionsList={[
-                    { value: 'Koinly', label: 'Koinly' },
-                    { value: 'CoinLedger', label: 'CoinLedger' },
-                    { value: 'CoinTracking', label: 'CoinTracking' },
-                    { value: 'ZenLedger', label: 'ZenLedger' }
-                  ]}
-                />
-                <button className="dropdown-btn" onClick={() => setSortMenuOpen(!sortMenuOpen)}>
+                <SimpleSelect value={platformCSVExport} setValue={setPlatformCSVExport} optionsList={platformList} />
+                <button className="dropdown-btn" onClick={() => setExportCsvMenuOpen(!exportCsvMenuOpen)}>
                   <TbArrowsSort />
                 </button>
               </div>
@@ -764,6 +823,37 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
             {errorMessage ? <div className="center orange bold">{errorMessage}</div> : <br />}
           </>
         </FiltersFrame>
+
+        {platformList && (
+          <div
+            style={{
+              zIndex: 999999
+            }}
+            className="dropdown--mobile"
+          >
+            <div className="dropdown__head">
+              <span>Platform</span>
+              <button onClick={() => setExportCsvMenuOpen(false)}>
+                <IoMdClose />
+              </button>
+            </div>
+            <ul>
+              {platformList.map((item, i) => (
+                <li
+                  key={i}
+                  style={{ fontWeight: item.value === platformCSVExport ? 'bold' : 'normal' }}
+                  onClick={() => {
+                    setPlatformCSVExport(item.value)
+                    setExportCsvMenuOpen(false)
+                  }}
+                  suppressHydrationWarning
+                >
+                  {item.label}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </>
   )
