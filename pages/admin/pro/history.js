@@ -28,10 +28,8 @@ import Image from 'next/image'
 import { CSVLink } from 'react-csv'
 import DownloadIcon from '../../../public/images/download.svg'
 import { koinly } from '../../../utils/koinly'
-import { TbArrowsSort } from 'react-icons/tb'
-import SimpleSelect from '../../../components/UI/SimpleSelect'
 import { LinkTx } from '../../../utils/links'
-import { IoMdClose } from 'react-icons/io'
+import RadioOptions from '../../../components/UI/RadioOptions'
 export const getServerSideProps = async (context) => {
   const { locale, query } = context
   const { address } = query
@@ -94,6 +92,16 @@ const dateFormatters = {
     const { mm, dd, yyyy, hh, min } = timePieces(timestamp)
     return `${mm}/${dd}/${yyyy} ${hh}:${min}`
   },
+  CryptoTax: (timestamp) => {
+    // Format: YYYY-MM-DD HH:mm:ss
+    const { yyyy, mm, dd, hh, min, ss } = timePieces(timestamp)
+    return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`
+  },
+  BlockPit: (timestamp) => {
+    // Format: DD.MM.YYYY HH:MM:SS in UTC
+    const { dd, mm, yyyy, hh, min, ss } = timePieces(timestamp)
+    return `${dd}.${mm}.${yyyy} ${hh}:${min}:${ss}`
+  },
   ZenLedger: (timestamp) => {
     // Format: mm/dd/yyyy hh:mm:ss in UTC
     const { mm, dd, yyyy, hh, min, ss } = timePieces(timestamp)
@@ -141,6 +149,43 @@ const processDataForExport = ({ activities, platform, selectedCurrency }) => {
       processedActivity.type = sending ? 'Sell' : 'Buy'
     } else if (platform === 'TokenTax') {
       processedActivity.type = sending ? 'Withdrawal' : 'Deposit'
+    } else if (platform === 'CryptoTax') {
+      processedActivity.type = !sending
+        ? 'buy'
+        : Math.abs(activity.amountNumber) <= activity.txFeeNumber
+        ? 'fee'
+        : 'sell'
+
+      processedActivity.cryptoTaxFeeCurrencyCode = processedActivity.txFeeCurrencyCode
+      processedActivity.cryptoTaxFeeNumber = processedActivity.txFeeNumber
+
+      if (processedActivity.type === 'buy') {
+        processedActivity.baseCurrency = processedActivity.receivedCurrency
+        processedActivity.baseAmount = processedActivity.receivedAmount
+      } else {
+        processedActivity.baseCurrency = processedActivity.sentCurrency
+        processedActivity.baseAmount = processedActivity.sentAmount
+        // don't include this fee amount in the fee column for type 'fee'
+        if (processedActivity.type === 'fee') {
+          processedActivity.cryptoTaxFeeCurrencyCode = ''
+          processedActivity.cryptoTaxFeeNumber = ''
+        }
+      }
+    } else if (platform === 'BlockPit') {
+      processedActivity.type = sending
+        ? 'Withdrawal'
+        : Math.abs(activity.amountNumber) <= activity.txFeeNumber
+        ? 'Fee'
+        : 'Deposit'
+      // don't include this fee amount in the fee column for type 'fee'
+      if (processedActivity.type === 'Fee') {
+        processedActivity.sentAmount = processedActivity.txFeeNumber
+        processedActivity.sentCurrency = processedActivity.txFeeCurrencyCode
+        processedActivity.txFeeCurrencyCode = ''
+        processedActivity.txFeeNumber = ''
+        processedActivity.receivedAmount = ''
+        processedActivity.receivedCurrency = ''
+      }
     } else if (platform === 'ZenLedger') {
       if (activity.amountNumber > 0) {
         processedActivity.type = 'Receive'
@@ -172,7 +217,9 @@ const platformList = [
   { value: 'CoinLedger', label: 'CoinLedger' },
   { value: 'CoinTracking', label: 'CoinTracking' },
   { value: 'TaxBit', label: 'TaxBit' },
-  { value: 'TokenTax', label: 'TokenTax' }
+  { value: 'TokenTax', label: 'TokenTax' },
+  { value: 'BlockPit', label: 'BlockPit' },
+  { value: 'CryptoTax', label: 'CryptoTax' }
 ]
 
 export default function History({ queryAddress, selectedCurrency, setSelectedCurrency }) {
@@ -197,7 +244,6 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
   const [removeDust, setRemoveDust] = useState(false)
   const [filteredActivities, setFilteredActivities] = useState([])
   const [platformCSVExport, setPlatformCSVExport] = useState('Koinly')
-  const [exportCsvMenuOpen, setExportCsvMenuOpen] = useState(false)
 
   const platformCSVHeaders = useMemo(
     () => [
@@ -222,16 +268,16 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         platform: 'CoinLedger',
         headers: [
           { label: 'Date (UTC)', key: 'timestampExport' },
-          { label: 'Platform', key: 'platform' },
+          { label: 'Platform (Optional)', key: 'platform' },
           { label: 'Asset Sent', key: 'sentCurrency' },
           { label: 'Amount Sent', key: 'sentAmount' },
           { label: 'Asset Received', key: 'receivedCurrency' },
           { label: 'Amount Received', key: 'receivedAmount' },
-          { label: 'Fee Currency', key: 'txFeeCurrencyCode' },
-          { label: 'Fee Amount', key: 'txFeeNumber' },
+          { label: 'Fee Currency (Optional)', key: 'txFeeCurrencyCode' },
+          { label: 'Fee Amount (Optional)', key: 'txFeeNumber' },
           { label: 'Type', key: 'type' },
-          { label: 'Description', key: 'memo' },
-          { label: 'TxHash', key: 'hash' }
+          { label: 'Description (Optional)', key: 'memo' },
+          { label: 'TxHash (Optional)', key: 'hash' }
         ]
       },
       {
@@ -294,6 +340,42 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
           { label: 'Group', key: '' },
           { label: 'Comment', key: 'memo' },
           { label: 'Date', key: 'timestampExport' }
+        ]
+      },
+      {
+        platform: 'CryptoTax',
+        headers: [
+          { label: 'Timestamp (UTC)', key: 'timestampExport' },
+          { label: 'Type', key: 'type' },
+          { label: 'Base Currency', key: 'baseCurrency' },
+          { label: 'Base Amount', key: 'baseAmount' },
+          { label: 'Quote Currency (Optional)', key: '' },
+          { label: 'Quote Amount (Optional)', key: '' },
+          { label: 'Fee Currency (Optional)', key: 'cryptoTaxFeeCurrencyCode' },
+          { label: 'Fee Amount (Optional)', key: 'cryptoTaxFeeNumber' },
+          { label: 'From (Optional)', key: 'counterparty' },
+          { label: 'To (Optional)', key: 'address' },
+          { label: 'Blockchain (Optional)', key: '' },
+          { label: 'ID (Optional)', key: 'hash' },
+          { label: 'Description (Optional)', key: 'memo' },
+          { label: 'Reference Price Per Unit (Optional)', key: '' },
+          { label: 'Reference Price Currency (Optional)', key: '' }
+        ]
+      },
+      {
+        platform: 'BlockPit',
+        headers: [
+          { label: 'Date (UTC)', key: 'timestampExport' },
+          { label: 'Integration Name', key: 'platform' },
+          { label: 'Label', key: 'type' },
+          { label: 'Outgoing Asset', key: 'sentCurrency' },
+          { label: 'Outgoing Amount', key: 'sentAmount' },
+          { label: 'Incoming Asset', key: 'receivedCurrency' },
+          { label: 'Incoming Amount', key: 'receivedAmount' },
+          { label: 'Fee Asset (optional)', key: 'txFeeCurrencyCode' },
+          { label: 'Fee Amount (optional)', key: 'txFeeNumber' },
+          { label: 'Comment (optional)', key: 'memo' },
+          { label: 'Trx. ID (optional)', key: 'hash' }
         ]
       },
       {
@@ -559,7 +641,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
   return (
     <>
       <SEO title="My addresses: history" />
-      <div className={`page-pro-history ${exportCsvMenuOpen ? 'is-sort-menu-open' : ''}`}>
+      <div className="page-pro-history">
         <h1 className="center">Pro address balances history</h1>
 
         <AdminTabs name="mainTabs" tab="pro" />
@@ -592,7 +674,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
         >
           <>
             {verifiedAddresses?.length > 0 && data && activities && data.total > activities.length && (
-              <div className="center" style={{ marginLeft: -32 }}>
+              <div className="center" style={{ margin: 'auto' }}>
                 <button
                   className="button-action narrow thin"
                   onClick={() => getProAddressHistory({ marker: data.marker })}
@@ -603,7 +685,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
                 <br />
               </div>
             )}
-            Addresses
+            <div style={{ margin: 'auto' }}>Addresses</div>
             {verifiedAddresses?.length > 0 ? (
               <>
                 {verifiedAddresses.map((address, i) => (
@@ -663,16 +745,13 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
               </CheckBox>
             </div>
             <div>
-              <div
-                style={{
-                  marginBottom: 20
-                }}
-              >
-                <SimpleSelect value={platformCSVExport} setValue={setPlatformCSVExport} optionsList={platformList} />
-                <button className="dropdown-btn" onClick={() => setExportCsvMenuOpen(!exportCsvMenuOpen)}>
-                  <TbArrowsSort />
-                </button>
-              </div>
+              Tax Export Platform
+              <RadioOptions
+                tabList={platformList}
+                tab={platformCSVExport}
+                setTab={setPlatformCSVExport}
+                name="platformSelect"
+              />
               {rendered && (
                 <CSVLink
                   data={processDataForExport({
@@ -687,6 +766,7 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
                   }
                   filename={'export ' + platformCSVExport + ' ' + new Date().toISOString() + '.csv'}
                   className={'button-action' + (!(activities?.length > 0) ? ' disabled' : '')}
+                  uFEFF={platformCSVExport === 'BlockPit' ? false : undefined}
                 >
                   <DownloadIcon /> CSV for {platformCSVExport}
                 </CSVLink>
@@ -823,37 +903,6 @@ export default function History({ queryAddress, selectedCurrency, setSelectedCur
             {errorMessage ? <div className="center orange bold">{errorMessage}</div> : <br />}
           </>
         </FiltersFrame>
-
-        {platformList && (
-          <div
-            style={{
-              zIndex: 999999
-            }}
-            className="dropdown--mobile"
-          >
-            <div className="dropdown__head">
-              <span>Platform</span>
-              <button onClick={() => setExportCsvMenuOpen(false)}>
-                <IoMdClose />
-              </button>
-            </div>
-            <ul>
-              {platformList.map((item, i) => (
-                <li
-                  key={i}
-                  style={{ fontWeight: item.value === platformCSVExport ? 'bold' : 'normal' }}
-                  onClick={() => {
-                    setPlatformCSVExport(item.value)
-                    setExportCsvMenuOpen(false)
-                  }}
-                  suppressHydrationWarning
-                >
-                  {item.label}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
     </>
   )
